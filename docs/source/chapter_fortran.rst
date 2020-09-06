@@ -157,7 +157,7 @@ The importance of specifying the precision for assigning scalar values to variab
 
 The program gives the following results:
 
-.. code-block:: 
+:: 
 
     pi1 = 3.14159274101257
     pi2 = 3.14159265358979
@@ -1131,7 +1131,7 @@ The following example illustrates how to use subroutines to assign an element ma
 
 The program gives the following output.
 
-.. code-block:: 
+:: 
 
     0.1925    0.1925    0.1925    -.1925    -.1925    -.1925
     0.1925    0.1925    0.1925    -.1925    -.1925    -.1925
