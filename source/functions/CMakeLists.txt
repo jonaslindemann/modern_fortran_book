@@ -1,0 +1,1 @@
+add_executable(functions functions.f90)

@@ -1,0 +1,1 @@
+add_executable(sample1 sample1.f90)

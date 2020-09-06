@@ -1,0 +1,7 @@
+&FOOD
+ NO_OF_EGGS=         12,
+ LITRES_OF_MILK=          5,
+ KILOS_OF_BUTTER=         42,
+ LIST=          1,          2,          3,          4,          5,
+   /
+

@@ -1,0 +1,1 @@
+add_executable(optional_arguments main.f90)

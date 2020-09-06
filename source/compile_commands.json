@@ -1,0 +1,192 @@
+[
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/unformatted_io",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/unformatted_io/main.f90 -o CMakeFiles/unformatted_io_1.dir/main.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/unformatted_io/main.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/unformatted_io",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/unformatted_io/main2.f90 -o CMakeFiles/unformatted_io_2.dir/main2.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/unformatted_io/main2.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/error_handling",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/error_handling/main.f90 -o CMakeFiles/error_handling.dir/main.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/error_handling/main.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/array_features",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/array_features/array1.f90 -o CMakeFiles/array1.dir/array1.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/array_features/array1.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/oo_programming",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/oo_programming/particle_mod.f90 -o CMakeFiles/oo_programming2.dir/particle_mod.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/oo_programming/particle_mod.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/oo_programming",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/oo_programming/main.f90 -o CMakeFiles/oo_programming2.dir/main.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/oo_programming/main.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/oo_programming",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/oo_programming/main2.f90 -o CMakeFiles/oo_programming1.dir/main2.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/oo_programming/main2.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/oo_programming",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/oo_programming/particles.f90 -o CMakeFiles/oo_programming1.dir/particles.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/oo_programming/particles.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/allocatable_dummy",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/allocatable_dummy/main.f90 -o CMakeFiles/allocatable_dummu.dir/main.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/allocatable_dummy/main.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/allocatable_function",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/allocatable_function/main.f90 -o CMakeFiles/allocatable_function.dir/main.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/allocatable_function/main.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/dynamic_fcodes",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/dynamic_fcodes/main.f90 -o CMakeFiles/dynamic_fcodes.dir/main.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/dynamic_fcodes/main.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/dynamic_fcodes",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/dynamic_fcodes/array_utils.f90 -o CMakeFiles/dynamic_fcodes.dir/array_utils.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/dynamic_fcodes/array_utils.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/pointers",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/pointers/main.f90 -o CMakeFiles/pointers.dir/main.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/pointers/main.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/overloading",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/overloading/main.f90 -o CMakeFiles/overloading.dir/main.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/overloading/main.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/overloading",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/overloading/special.f90 -o CMakeFiles/overloading.dir/special.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/overloading/special.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/case",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/case/case.f90 -o CMakeFiles/case.dir/case.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/case/case.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/formatting",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/formatting/formatting.f90 -o CMakeFiles/formatting.dir/formatting.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/formatting/formatting.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/modules",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/modules/module_main.f90 -o CMakeFiles/modules.dir/module_main.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/modules/module_main.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/modules",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/modules/module_truss.f90 -o CMakeFiles/modules.dir/module_truss.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/modules/module_truss.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/namelist_io",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/namelist_io/main.f90 -o CMakeFiles/namelist_io.dir/main.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/namelist_io/main.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/operator_overloading",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/operator_overloading/main.f90 -o CMakeFiles/operator_overloading.dir/main.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/operator_overloading/main.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/operator_overloading",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/operator_overloading/vector_operations.f90 -o CMakeFiles/operator_overloading.dir/vector_operations.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/operator_overloading/vector_operations.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/optional_arguments",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/optional_arguments/main.f90 -o CMakeFiles/optional_arguments.dir/main.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/optional_arguments/main.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/private_entities",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/private_entities/main.f90 -o CMakeFiles/private_entities.dir/main.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/private_entities/main.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/private_entities",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/private_entities/mymodule.f90 -o CMakeFiles/private_entities.dir/mymodule.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/private_entities/mymodule.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/procedures_as_arguments",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/procedures_as_arguments/main.f90 -o CMakeFiles/procedures_as_arguments.dir/main.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/procedures_as_arguments/main.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/procedures_as_arguments",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/procedures_as_arguments/utils.f90 -o CMakeFiles/procedures_as_arguments.dir/utils.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/procedures_as_arguments/utils.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/strings",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/strings/strings1.f90 -o CMakeFiles/strings1.dir/strings1.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/strings/strings1.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/strings",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/strings/strings2.f90 -o CMakeFiles/strings2.dir/strings2.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/strings/strings2.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/submodules",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/submodules/main.f90 -o CMakeFiles/submodules.dir/main.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/submodules/main.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/submodules",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/submodules/points.f90 -o CMakeFiles/submodules.dir/points.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/submodules/points.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/submodules",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/submodules/points_a.f90 -o CMakeFiles/submodules.dir/points_a.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/submodules/points_a.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/subroutines",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/subroutines/subroutines.f90 -o CMakeFiles/subroutines.dir/subroutines.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/subroutines/subroutines.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/sample1",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/sample1/sample1.f90 -o CMakeFiles/sample1.dir/sample1.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/sample1/sample1.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/sample2",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/sample2/sample2.f90 -o CMakeFiles/sample2.dir/sample2.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/sample2/sample2.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/zero_size",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/zero_size/zero.f90 -o CMakeFiles/zero_size.dir/zero.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/zero_size/zero.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/logic",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/logic/logic.f90 -o CMakeFiles/logic.dir/logic.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/logic/logic.f90"
+},
+{
+  "directory": "D:/Users/Jonas/Development/progsci_book/source/functions",
+  "command": "D:/mingw64/bin/gfortran.exe    -g   -c D:/Users/Jonas/Development/progsci_book/source/functions/functions.f90 -o CMakeFiles/functions.dir/functions.f90.obj",
+  "file": "D:/Users/Jonas/Development/progsci_book/source/functions/functions.f90"
+}
+]

@@ -1,0 +1,1 @@
+add_executable(procedures_as_arguments main.f90 utils.f90)

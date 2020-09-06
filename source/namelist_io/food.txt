@@ -1,0 +1,2 @@
+&food litres_of_milk=5, no_of_eggs=12, kilos_of_butter=42, list=1,2,3,4,5 /
+&food litres_of_milk=6, no_of_eggs=24, kilos_of_butter=84, list=2,3,4,5,6 /

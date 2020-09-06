@@ -1,0 +1,5 @@
+
+docs/build
+source/bouncing_particles
+source/bouncing_particles_oo
+*.exe

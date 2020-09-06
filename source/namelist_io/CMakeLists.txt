@@ -1,0 +1,1 @@
+add_executable(namelist_io main.f90)

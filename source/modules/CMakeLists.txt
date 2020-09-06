@@ -1,0 +1,1 @@
+add_executable(modules module_main.f90 module_truss.f90)

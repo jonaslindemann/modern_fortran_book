@@ -1,0 +1,1 @@
+add_executable(private_entities main.f90 mymodule.f90)

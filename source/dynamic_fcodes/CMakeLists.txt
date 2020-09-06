@@ -1,0 +1,1 @@
+add_executable(dynamic_fcodes main.f90 array_utils.f90)

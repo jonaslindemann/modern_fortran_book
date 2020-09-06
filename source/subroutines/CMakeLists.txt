@@ -1,0 +1,1 @@
+add_executable(subroutines subroutines.f90)

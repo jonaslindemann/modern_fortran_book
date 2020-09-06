@@ -1,0 +1,1 @@
+add_executable(fea_code module_main.f90 module_truss.f90)

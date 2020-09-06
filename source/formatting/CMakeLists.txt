@@ -1,0 +1,1 @@
+add_executable(formatting formatting.f90)
