@@ -36,7 +36,7 @@ depends on the file, . The action for compressing the file is shown in
 the second row. When you run the make command in the directory the
 following output is shown:
 
-.. code-block::
+::
 
    $ ls
    Makefile    myfile.txt
@@ -48,7 +48,7 @@ following output is shown:
 If make is run again it will recognise that the has not been changed and
 not execute the action again.
 
-.. code-block::
+::
 
    $ make
    make: 'myfile.gz' is up to date.
@@ -56,7 +56,7 @@ not execute the action again.
 If the is changed, make will recognise this and run the specified action
 again.
 
-.. code-block::
+::
 
    $ touch myfile.txt
    $ make
@@ -92,7 +92,7 @@ second rule defines how the object file is created from the source file,
 , which is also listed as a dependency for the rule. Running make on
 this makefile produces the following output:
 
-.. code-block::
+::
 
    $ ls
    Makefile    myprog.f90
@@ -125,7 +125,7 @@ additional rule for building our additional sourcefile, .
 
 The interesting happens when the file is updated:
 
-.. code-block::
+::
 
    $ touch mymodule.f90 
    $ make
@@ -163,7 +163,7 @@ the previous makefile we get the following makefile:
 
 Running make produces the following output:
 
-.. code-block::
+::
 
    $ make
    module_main.f90:3.5:
@@ -191,7 +191,7 @@ be build. The updated make file is shown below:
 
 Running make again will produce the desired results:
 
-.. code-block::
+::
 
    $ make
    gfortran -c module_truss.f90
@@ -237,7 +237,7 @@ the is used to make the rule more generic.
 Running make produces the desired result, but with a more flexible make
 file.
 
-.. code-block::
+::
 
    $ make
    gfortran -c myprog.f90
@@ -466,7 +466,7 @@ previous section to handle this it becomes:
 When executing this makefile with make, myutils.f90, will be the first
 target to be built.
 
-.. code-block::
+::
 
    $ make
    gfortran -c myutils.f90 -o myutils.o
@@ -532,7 +532,7 @@ The completed CMakeLists.txt file then becomes:
 Now when we have a CMakeLists.txt file it is possible to run in the same
 directory to create the needed makefiles to build the project:
 
-.. code-block::
+::
 
    $ ls
    CMakeLists.txt  myprog.f90
@@ -569,7 +569,7 @@ As show in the above output, cmake, has generated a lot of files one of
 them being a normal makefile. To build the project, the normal make
 command can be used.
 
-.. code-block::
+::
 
    $ make
    Scanning dependencies of target simple
@@ -582,7 +582,7 @@ quite cluttered. The recommended way of running CMake is to create a
 separate build directory and generate the build files in this directory.
 This is done in the following example:
 
-.. code-block::
+::
 
    $ mkdir build
    $ cd build
@@ -605,7 +605,7 @@ Controlling the build type can be done by assigning the variable to
 either or when executing CMake. Variables can be set on the command line
 by using the switch -D as shown in the following example:
 
-.. code-block::
+::
 
    $ cmake -D CMAKE_BUILD_TYPE=Release ..
    -- Configuring done
@@ -633,7 +633,7 @@ To show what switches that are actually used when building the
 executable, the , is set to . This will show the actual commands used
 during the build.
 
-.. code-block::
+::
 
    $ mkdir build
    $ cd build/
@@ -718,7 +718,7 @@ example:
 Here, , containing 3 strings. The -function will concatenate the items
 in the list and the resulting output of running cmake will be:
 
-.. code-block::
+::
 
    $ cmake ..
    abc
@@ -729,7 +729,7 @@ in the list and the resulting output of running cmake will be:
 Using a list variable it is also possible to do an iteration using a
 -statement, which the following example shows:
 
-.. code-block::
+::
 
    set(MYLIST a b c)
    foreach(i ${MYLIST})
@@ -738,7 +738,7 @@ Using a list variable it is also possible to do an iteration using a
 
 Running this using CMake produced the following output:
 
-.. code-block::
+::
 
    $ cmake ..
    a
@@ -815,7 +815,7 @@ To generate build files for a different generator the -switch is used.
 In the following example build files for the Eclipse-environment are
 generated.
 
-.. code-block::
+::
 
    $ mkdir build_eclipse
    $ cd build_eclipse/

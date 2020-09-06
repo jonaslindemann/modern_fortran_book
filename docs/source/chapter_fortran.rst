@@ -248,7 +248,7 @@ The following example shows an example of referencing defined and undefined vari
 
 This will print the following:
 
-.. code-block:: 
+::
 
       42.000000000000000
       8.2890460584580950E-317
@@ -367,7 +367,7 @@ If the operands only consists of integer it is important to note that integer di
 
 Running the program will result in the following output:
 
-.. code-block:: 
+:: 
 
     2
     2
@@ -632,7 +632,7 @@ We print the arrays, so that we can see the structure:
 
 The print-statements are added to show the actual memory address, so we can see what happens when we create subobjects.
 
-.. code-block:: 
+:: 
 
     Matrix a ( 10 x  10) DP
     ---------------------------------------------------------------------- ...
@@ -663,7 +663,7 @@ In the first example we are extracing the first column of the **A** array:
 
 This will give us the following output:
 
-.. code-block:: 
+:: 
 
     Vector ( 10)
     ---------------------------------------------------------------------- ...
@@ -682,7 +682,7 @@ If we instead extract the first row of the **A**-array:
 
 We get the following output:
 
-.. code-block:: 
+:: 
 
     Vector ( 10)
     ---------------------------------------------------------------------- ...
@@ -706,7 +706,7 @@ Below illustrates some other examples of using array sub objects:
 
 This gives the following output:
 
-.. code-block::
+::
 
     Matrix (  2 x   2) DP
     --------------------
@@ -867,7 +867,7 @@ The most common repetitive statement in Fortran is the **do**-statement. The syn
 
 The above program gives the following output:
 
-.. code-block:: 
+:: 
 
     Cycling to next value.
     Cycling to next value.
@@ -1028,7 +1028,7 @@ In the example the input parameters are assigned the following values:
 
 The program produces the following output
 
-.. code-block:: 
+:: 
 
     0.1925    0.1925    0.1925    -.1925    -.1925    -.1925
     0.1925    0.1925    0.1925    -.1925    -.1925    -.1925
@@ -1358,7 +1358,7 @@ The **func**-function can now be called using either floating point values or in
 
 Running this program produce the following output:
 
-.. code-block::
+::
 
     $ ./overloading
             1764
@@ -1431,7 +1431,7 @@ The new data type together with the defined + operator can now be used to implem
 
 Running the code will produced the expected output:
 
-.. code-block::
+::
 
     $ ./opoverload
       1.0000000000000000        1.0000000000000000        0.0000000000000000
@@ -1617,7 +1617,7 @@ In the following main program, the implemented **writeArray** subroutine is used
 The resulting formatted output is shown below:
 
 
-.. code-block:: Fortran
+::
 
     $ ./dynamic_fcodes
     42.0    42.0    42.0    42.0    42.0    42.0
@@ -1641,7 +1641,7 @@ Here a namelist, **food**, is defined consisting of the specified variables. Var
 
 The namelist in the text file starts with the \& character followed by the namelist-name then the namelist variable pairs are listed separated by commas. The namelist is ended with a single /. The following example shows 2 namelist entries in a text file:
 
-.. code-block::
+::
 
     &food litres_of_milk=5, no_of_eggs=12, kilos_of_butter=42, list=1,2,3,4,5 /
     &food litres_of_milk=6, no_of_eggs=24, kilos_of_butter=84, list=2,3,4,5,6 /
@@ -1659,7 +1659,7 @@ Multiple namelist entries can be read from an opened file. The following code sh
 
 Running this code produces the following output:
 
-.. code-block::
+::
 
           12           5          42
           24           6          84
@@ -1676,7 +1676,7 @@ Writing using namelist I/O is done in the same way as reading. The following cod
 
 The contents of the written file, **food2.txt**, is shown below:
 
-.. code-block::
+::
 
     &FOOD
     NO_OF_EGGS=         24,
@@ -1750,11 +1750,10 @@ The concept of unformatted I/O is illustrated in a larger example. In this examp
 
 The code produced the following output when run:
 
-.. code-block:: Fortran
+::
 
     $ ./unformatted_io_2
     0.00000000       0.00000000       0.00000000       0.00000000       0.00000000       0.00000000       1.00000000       0.00000000       0.00000000       0.00000000       0.00000000       0.00000000       0.00000000       1.00000000       0.00000000       0.00000000       0.00000000       0.00000000       0.00000000       0.00000000       1.00000000       0.00000000       0.00000000       0.00000000       0.00000000       0.00000000       0.00000000       1.00000000       0.00000000       0.00000000       0.00000000       0.00000000 ....
-\end{fortrancodeenv}
 
 Which means that the data was read correctly back from disk.
 
@@ -1920,7 +1919,7 @@ A more complete example is shown in the following listing:
 
 The program produces the following output.
 
-.. code-block:: Fortran
+::
 
     5
     42
@@ -2248,7 +2247,7 @@ This subroutine will enable a user of the class to easily print the instance var
 
 This code would give the following output:
 
-.. code-block::
+::
 
     Particle position
     -----------------
@@ -2281,7 +2280,7 @@ Assigning these variables as shown in the following example,
 
 will produce the following compilation error:
 
-.. code-block::
+::
 
         particle % m_pos(1) = 0.0
                     1

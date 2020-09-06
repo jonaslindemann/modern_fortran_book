@@ -153,7 +153,7 @@ following is used to build the extension module:
 Building the module from the command line is then done using the
 following command:
 
-.. code-block:: 
+:: 
 
    > python setup.py build
    running build
@@ -280,7 +280,7 @@ can be passed back to the the calling Python routine.
 To create a Python module from the source code we execute the -command
 on the command line as show below:
 
-.. code-block::
+::
 
    > f2py -m fortmod -c simple.f90
    ...
@@ -302,7 +302,7 @@ F2PY will automatically generate built-in documentation in the module.
 To display this documentation the property is used, as shown in the
 following example:
 
-.. code-block::
+::
 
    >>> print fortmod.__doc__
    This module 'fortmod' is auto-generated with f2py (version:2).
@@ -374,7 +374,7 @@ variable or an output variable. Creating a Fortran extension module with
 F2PY on the above routine produces the following corresponding Python
 routine (from the generated documentation):
 
-.. code-block::
+::
 
    c = matrix_multiply(a,b,[r,s,t])
 
@@ -401,7 +401,7 @@ routine (from the generated documentation):
 We can see in the documentation that the syntax of the Python routine
 is:
 
-.. code-block::
+::
 
    c = matrix_multiply(a,b,[r,s,t])
 
@@ -427,7 +427,7 @@ following code:
 
 Output from the Python code is:
 
-.. code-block:: 
+:: 
 
    [[ 1200.  1200.  1200.  1200.  1200.  1200.]
     [ 1200.  1200.  1200.  1200.  1200.  1200.]
@@ -456,7 +456,7 @@ In this example, an array is created before the call to our Fortran
 routine. The id or memory location is queried using the and displayed
 before and after the call. The output is:
 
-.. code-block::
+::
 
    id of C before multiply = 4299985824
    id of C after multiply = 4340070160
@@ -489,7 +489,7 @@ subroutine then becomes:
 The only difference is the attribute on the array declaration. However,
 the generated Python routine is quite different:
 
-.. code-block::
+::
 
    matrix_multiply2(a,b,c,[r,s,t])
 
@@ -536,7 +536,7 @@ area for the array needs to exist before the call as the pointer to the
 array is passed directly to the Fortran code. The output of the Python
 code is shown below:
 
-.. code-block::
+::
 
    id of C before multiply = 4302082976
    id of C after multiply = 4302082976
