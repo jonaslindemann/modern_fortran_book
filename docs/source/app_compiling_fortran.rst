@@ -12,7 +12,7 @@ Compiling single source Fortran programs
 To compile a simple Fortran 90 source file into an executable, execute
 the -command with the source file as the only argument:
 
-.. code-block::
+::
 
    $ ls
    myprog.f90
@@ -23,7 +23,7 @@ the -command with the source file as the only argument:
 This produces an executable called , which can be executed using the
 following command:
 
-.. code-block:: 
+:: 
 
    $ ./a.out 
     Hello, World!
@@ -33,7 +33,7 @@ best name for an executable. To tell the compiler to name the executable
 to something more meaningful the command line switch, , can be used as
 shown in the following example:
 
-.. code-block:: 
+:: 
 
    $ gfortran myprog.f90 -o myprog
    $ ls
@@ -48,7 +48,7 @@ Often a Fortran application consists of multiple source files. To
 compile multiple source files, gfortran supports adding additional
 source files as parameters on the command line as shown below:
 
-.. code-block::
+::
 
    $ gfortran mymodule.f90 myprog.f90 -o myprog
    $ ls
@@ -81,7 +81,7 @@ options.
 To compile with optimisation just add the above options as the first
 option to the compiler command as shown in the following example:
 
-.. code-block:: 
+:: 
 
    $ gfortran -O3 mymodule.f90 myprog.f90 -o myprog
 
@@ -95,7 +95,7 @@ executable. To tell the compiler to include this in the binary, the
 -switch must be used. The following commands show how a debug enabled
 executable is built:
 
-.. code-block::
+::
 
    $ gfortran -g mymodule.f90 myprog.f90 -o myprog
 
@@ -114,7 +114,7 @@ default Fortran 95). Can also be used together with the switches, , and
 to check for extension to other Fortran standards. In the below example
 the code is compiled with the option:
 
-.. code-block:: 
+:: 
 
    $ gfortran -pedantic mymodule.f90 myprog.f90 -o myprog
    myprog.f90:3.1:
@@ -135,7 +135,7 @@ Fortran standard.
 The switch tells the compiler to check for code practices that should be
 avoided. The example below shows how it can be used:
 
-.. code-block::
+::
 
    $ gfortran -Wall mymodule.f90 myprog.f90 -o myprog
    myprog.f90:3.1:
