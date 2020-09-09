@@ -99,12 +99,12 @@ Conditional statements
 a) If the value of the variable, **i**, is greater than 100 print ’i is greater than 100!’
 b) If the value of the logical variable, **extra_filling**, is true print ’Extra filling is ordered.’, otherwise print ’No extra filling.’.
 
-**3-2** Give a case-statment for the variable, **a**, printing ’a is 1’ when a is 1, ’a is between 1 and 20’ for values between 1 and 20 and prints ’a is not between 1 and 20’ for all other values.
+**3-2** Give a case-statment for the variable, **a**, printing ’a is 1’ when a is 1, ’a is between 2 and 20’ for values between 1 and 20 and prints ’a is not between 1 and 20’ for all other values.
 
 Repetitive statements
 =====================
 
-**4-1** Write a program consisting of a do-statement 1 to 20 with the control variable, i. For values, i, between 1 till 5, the value of i is printed, otherwise ’i>5’ is printed. The loop is to be terminated when i equals 15.
+**4-1** Write a program consisting of a do-statement 1 to 20 with the control variable, i. For values, i, between 1 till 5, the value of i is printed, otherwise ’i > 5’ is printed. The loop is to be terminated when i equals 15.
 
 Built-in functions
 ==================
@@ -134,9 +134,7 @@ expression:
 
 :math:`e^{x} \sin ^{2} x`
 
-**6-2** Create a module, , containing the function in 1-21 and a function for converting a string to an integer value. Change the program in 1-21 to use this module. The module is placed in a separate file, and the main program in **main.f90**. 
-
-**6-3** A subroutine receives as an argument an array of values, x, and the number of elements in x, n. If the mean and variance of the values in x are estimated by 
+**6-2** A subroutine receives as an argument an array of values, x, and the number of elements in x, n. If the mean and variance of the values in x are estimated by 
 
 .. math::
 
@@ -149,6 +147,8 @@ and
     variance = \frac{1}{1-n}\sum_{i=1}^{n}(x(i)-mean)
 
 Write a subroutine which returns these calculated values as arguments. The subroutine check for invalid values of n (<=1). Write a main program that illustrates the use of this subroutine.
+
+**6-3** Create a module, **statistics**, containing the functions in 6-2. Change the program in 6-2 to use this module. The module is placed in a separate file, and the main program in **main.f90**. 
 
 Input and output
 ================
