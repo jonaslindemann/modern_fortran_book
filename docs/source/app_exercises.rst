@@ -144,7 +144,7 @@ and
 
 .. math::
 
-    variance = \frac{1}{1-n}\sum_{i=1}^{n}(x(i)-mean)^2
+    variance = \frac{1}{n-1}\sum_{i=1}^{n}(x(i)-mean)^2
 
 Write a subroutine which returns these calculated values as arguments. The subroutine check for invalid values of n (<=1). Write a main program that illustrates the use of this subroutine.
 
