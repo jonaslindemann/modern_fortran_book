@@ -81,7 +81,7 @@ ii) the last column of a;
 iii) every second element in each row and column;
 iv) as for (iii) in reverse order in both dimensions;
 
-**2-9** Complete excercise F.2 using array syntax instead of do constructs.
+**2-9** Complete excercise **2.8** using array syntax instead of do constructs.
 
 **2-10** Create a derived data type for a particle in a particle system. The particle should have the following attributes:
 
