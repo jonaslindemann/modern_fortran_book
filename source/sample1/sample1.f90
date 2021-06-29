@@ -1,11 +1,11 @@
 program sample1
 
-	integer, parameter :: ap=selected_real_kind(15,300)
-	real(kind=ap) :: x, y
-	real(kind=ap) :: k(20,20)
+	integer, parameter :: dp=selected_real_kind(15,300)
+	real(kind=dp) :: x, y
+	real(kind=dp) :: k(20,20)
 
-	x = 6.0_ap
-	y = 0.25_ap
+	x = 6.0_dp
+	y = 0.25_dp
 
 	write(*,*) x
 	write(*,*) y
@@ -19,11 +19,11 @@ contains
 
 subroutine myproc(k)
 	
-	integer, parameter :: ap=selected_real_kind(15,300)
-	real(kind=ap) :: k(20,20)
+	integer, parameter :: dp=selected_real_kind(15,300)
+	real(kind=dp) :: k(20,20)
 
-	k=0.0_ap
-	k(1,1) = 42.0_ap
+	k=0.0_dp
+	k(1,1) = 42.0_dp
 
 	return
 
