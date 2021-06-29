@@ -435,13 +435,13 @@ Arrays are assigned values either by explicit indices or the entire array in a s
 
 .. code-block:: Fortran
 
-    K(5,6) = 5.0
+    K(5,6) = 5.0_ap
 
 If the assignment had been written as
 
 .. code-block:: Fortran
 
-    K = 5.0
+    K = 5.0_ap
 
 the entire array, **K**, would have been assigned the value 5.0. This is an efficient way of assigning entire arrays
 initial values.
