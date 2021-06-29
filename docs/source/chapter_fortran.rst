@@ -317,8 +317,8 @@ The following arithmetic operators are defined in Fortran:
 Parenthesis are used to specify the order of different operators. If no parenthesis are given in an expression operators are evaluated in the following order:
 
 1. Operations with \*\*
-1. Operations with \* or /
-1. Operations with + or --
+2. Operations with \* or /
+3. Operations with + or --
 
 The following code illustrates operator precedence.
 
