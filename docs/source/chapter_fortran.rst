@@ -72,11 +72,11 @@ Data types and declarations
 
 There are 5 built-in data types in Fortran:
 
- * integer, Integers
- * real, Floating point numbers
- * complex, Complex numbers
- * logical, Boolean values
- * character, Strings and characters
+* integer, Integers
+* real, Floating point numbers
+* complex, Complex numbers
+* logical, Boolean values
+* character, Strings and characters
 
 The syntax for a variable declaration is:
 
@@ -316,9 +316,9 @@ The following arithmetic operators are defined in Fortran:
 
 Parenthesis are used to specify the order of different operators. If no parenthesis are given in an expression operators are evaluated in the following order:
 
- 1. Operations with **
- 1. Operations with * or /
- 1. Operations with + or --
+1. Operations with **
+1. Operations with * or /
+1. Operations with + or --
 
 The following code illustrates operator precedence.
 
