@@ -4,17 +4,17 @@ program module_sample
 
 	implicit none
 
-	real(ap) :: ex(2), ey(2), ez(2), ep(2)
-	real(ap), allocatable :: Ke(:,:)
+	real(dp) :: ex(2), ey(2), ez(2), ep(2)
+	real(dp), allocatable :: Ke(:,:)
 
-	ep(1) = 1.0_ap
-	ep(2) = 1.0_ap
-	ex(1) = 0.0_ap
-	ex(2) = 1.0_ap
-	ey(1) = 0.0_ap
-	ey(2) = 1.0_ap
-	ez(1) = 0.0_ap
-	ez(2) = 1.0_ap
+	ep(1) = 1.0_dp
+	ep(2) = 1.0_dp
+	ex(1) = 0.0_dp
+	ex(2) = 1.0_dp
+	ey(1) = 0.0_dp
+	ey(2) = 1.0_dp
+	ez(1) = 0.0_dp
+	ez(2) = 1.0_dp
 
 	allocate(Ke(6,6))
 

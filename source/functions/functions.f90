@@ -2,27 +2,27 @@ program function_sample
 
 	implicit none
 
-	integer, parameter :: ap = selected_real_kind(15,300)
+	integer, parameter :: dp = selected_real_kind(15,300)
 	
 	integer :: i, j
 	
-	real(ap) :: x1, x2, y1, y2, z1, z2
-	real(ap) :: nx, ny, nz
-	real(ap) :: L, E, A
-	real(ap) :: Kel(2,2)
-	real(ap) :: Ke(6,6)
-	real(ap) :: G(2,6)
+	real(dp) :: x1, x2, y1, y2, z1, z2
+	real(dp) :: nx, ny, nz
+	real(dp) :: L, E, A
+	real(dp) :: Kel(2,2)
+	real(dp) :: Ke(6,6)
+	real(dp) :: G(2,6)
 
 	! Initiate scalar values
 
-	E = 1.0_ap
-	A = 1.0_ap
-	x1 = 0.0_ap
-	x2 = 1.0_ap
-	y1 = 0.0_ap
-	y2 = 1.0_ap
-	z1 = 0.0_ap
-	z2 = 1.0_ap
+	E = 1.0_dp
+	A = 1.0_dp
+	x1 = 0.0_dp
+	x2 = 1.0_dp
+	y1 = 0.0_dp
+	y2 = 1.0_dp
+	z1 = 0.0_dp
+	z2 = 1.0_dp
 
 	! Calcuate directional cosines
 
@@ -33,13 +33,13 @@ program function_sample
 
 	! Calucate local stiffness matrix
 
-	Kel(1,:) = (/  1.0_ap , -1.0_ap  /)
-	Kel(2,:) = (/ -1.0_ap,   1.0_ap  /)
+	Kel(1,:) = (/  1.0_dp , -1.0_dp  /)
+	Kel(2,:) = (/ -1.0_dp,   1.0_dp  /)
 
 	Kel = Kel * (E*A/L)
 
-	G(1,:) = (/ nx, ny, nz, 0.0_ap, 0.0_ap, 0.0_ap /)
-	G(2,:) = (/ 0.0_ap, 0.0_ap, 0.0_ap, nx, ny, nz /)
+	G(1,:) = (/ nx, ny, nz, 0.0_dp, 0.0_dp, 0.0_dp /)
+	G(2,:) = (/ 0.0_dp, 0.0_dp, 0.0_dp, nx, ny, nz /)
 
 	! Calculate transformed stiffness matrix
 

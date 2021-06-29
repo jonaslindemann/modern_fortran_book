@@ -6,7 +6,7 @@ module truss
 	! and modules
 
 	integer, public, parameter :: &
-	ap = selected_real_kind(15,300)
+	dp = selected_real_kind(15,300)
 
 	! Private variables declarations
 
@@ -19,13 +19,13 @@ subroutine bar3e(ex,ey,ez,ep,Ke)
 	implicit none
 
 
-	real(ap) :: ex(2), ey(2), ez(2), ep(2)
-	real(ap) :: Ke(6,6)
+	real(dp) :: ex(2), ey(2), ez(2), ep(2)
+	real(dp) :: Ke(6,6)
 
-	real(ap) :: nxx, nyx, nzx
-	real(ap) :: L, E, A
-	real(ap) :: Kel(2,2)
-	real(ap) :: G(2,6)
+	real(dp) :: nxx, nyx, nzx
+	real(dp) :: L, E, A
+	real(dp) :: Kel(2,2)
+	real(dp) :: G(2,6)
 
 	! Calculate directional cosines
 
@@ -38,14 +38,14 @@ subroutine bar3e(ex,ey,ez,ep,Ke)
 
 	! Calculate local stiffness matrix
 
-	Kel(1,:) = (/  1.0_ap , -1.0_ap  /)
-	Kel(2,:) = (/ -1.0_ap,   1.0_ap  /)
+	Kel(1,:) = (/  1.0_dp , -1.0_dp  /)
+	Kel(2,:) = (/ -1.0_dp,   1.0_dp  /)
 
 	Kel = Kel * (ep(1)*ep(2)/L)
 
 	G(1,:) = (/ nxx, nyx, nzx, &
-		0.0_ap, 0.0_ap, 0.0_ap /)
-	G(2,:) = (/ 0.0_ap, 0.0_ap, 0.0_ap, &
+		0.0_dp, 0.0_dp, 0.0_dp /)
+	G(2,:) = (/ 0.0_dp, 0.0_dp, 0.0_dp, &
 		nxx, nyx, nzx /)
 
 	! Calculate transformed stiffness matrix
@@ -58,7 +58,7 @@ end subroutine bar3e
 
 subroutine writeMatrix(A)
 
-	real(ap) :: A(6,6)
+	real(dp) :: A(6,6)
 
 	! Print matrix to standard output
 
