@@ -73,9 +73,13 @@ Data types and declarations
 There are 5 built-in data types in Fortran:
 
 * integer, Integers
+
 * real, Floating point numbers
+
 * complex, Complex numbers
+
 * logical, Boolean values
+
 * character, Strings and characters
 
 The syntax for a variable declaration is:
@@ -288,17 +292,17 @@ The members of the derived data types are accessed using the **\%**-operator. In
 
 Derived data types can contain multiple Fortran data types:
 
-\begin{fortrancodeenv}
-type particle
-    real(dp)  :: x
-    real(dp)  :: y
-    real(dp)  :: z
-    real(dp)  :: m
-    logical   :: active
-    integer   :: id
-    character :: name(8)
-end type particle
-\end{fortrancodeenv}
+.. code-block:: Fortran
+
+    type particle
+        real(dp)  :: x
+        real(dp)  :: y
+        real(dp)  :: z
+        real(dp)  :: m
+        logical   :: active
+        integer   :: id
+        character :: name(8)
+    end type particle
 
 Operators and expressions
 =========================
