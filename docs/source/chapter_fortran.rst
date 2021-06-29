@@ -125,7 +125,7 @@ To be able to choose the correct precision for a floating point variable, Fortra
 .. code-block:: Fortran
 
     integer, parameter :: dp = selected_real_kind(15,300)
-    real(kind=ap) :: X,Y
+    real(kind=dp) :: X,Y
 
 In this example the floating point variable should have at least 15 significant decimals and could represent numbers from 10:math:`^{-300}` to 10:math:`^{300}`. For several common architectures **selected_real_kind** will return the value 8. The advantage of using the above approach is that the precision of the floating point values can be specified in a architectural independent way. The precision constant can also be used when
 specifying numbers in variable assignments as the following example illustrate.
@@ -415,9 +415,9 @@ Declaring arrays and matrices can be done in two ways. In the first method the d
 
 .. code-block:: Fortran
 
-    integer, parameter :: ap = selected_real_kind(15,300)
-    real(ap),dimension(20,20) :: K ! Matrix 20x20 elements
-    real(ap) :: fe(6) ! Array with 6 elements
+    integer, parameter :: dp = selected_real_kind(15,300)
+    real(dp), dimension(20,20) :: K ! Matrix 20x20 elements
+    real(dp) :: fe(6) ! Array with 6 elements
 
 The default starting index in arrays is 1. It is however possible to define custom indices in the declaration, as the following example shows.
 
@@ -435,13 +435,13 @@ Arrays are assigned values either by explicit indices or the entire array in a s
 
 .. code-block:: Fortran
 
-    K(5,6) = 5.0
+    K(5,6) = 5.0_dp
 
 If the assignment had been written as
 
 .. code-block:: Fortran
 
-    K = 5.0
+    K = 5.0_dp
 
 the entire array, **K**, would have been assigned the value 5.0. This is an efficient way of assigning entire arrays
 initial values.
@@ -450,18 +450,18 @@ Explicit values can be assigned to arrays in a single statement using the follow
 
 .. code-block:: Fortran
 
-    real(ap) :: v(5) ! Array with 5 elements
-    v = (/ 1.0, 2.0, 3.0, 4.0, 5.0 /)
+    real(dp) :: v(5) ! Array with 5 elements
+    v = (/ 1.0_dp, 2.0_dp, 3.0_dp, 4.0_dp, 5.0_dp /)
 
 This is equivalent to an assignment using the following statements.
 
 .. code-block:: Fortran
 
-    v(1) = 1.0
-    v(2) = 2.0
-    v(3) = 3.0
-    v(4) = 4.0
-    v(5) = 5.0
+    v(1) = 1.0_dp
+    v(2) = 2.0_dp
+    v(3) = 3.0_dp
+    v(4) = 4.0_dp
+    v(5) = 5.0_dp
 
 The number of elements in the list must be the same as the number of elements in the array variable.
 
@@ -489,11 +489,11 @@ Using slicing rows or columns can be assigned in single statements as shown in t
 
     ! Assign row 5 in matrix K the values 1, 2, 3, 4, 5
 
-    K(5,:) = (/ 1.0, 2.0, 3.0, 4.0, 5.0 /)
+    K(5,:) = (/ 1.0_dp, 2.0_dp, 3.0_dp, 4.0_dp, 5.0_dp /)
 
     ! Assign the array v the values 5, 4, 3, 2, 1
 
-    v = (/ 5.0, 4.0, 3.0, 2.0, 1.0 /)
+    v = (/ 5.0_dp, 4.0_dp, 3.0_dp, 2.0_dp, 1.0_dp /)
 
 Array expressions
 -----------------
@@ -1149,7 +1149,7 @@ Sometimes when implementing subroutines the number of arguments can grow, making
 
     subroutine dostuff(A, b, c)
 
-        real(8) :: A(10,10)
+        real    :: A(10,10)
         integer :: b
         integer, optional :: c
         ...
@@ -1181,13 +1181,13 @@ To implement a subroutine that takes a function as an input parameter, the funct
 
 .. code-block:: Fortran
 
-    real(8) function integrate(a, b, func)
+    real function integrate(a, b, func)
 
-        real(8) :: a, b
+        real :: a, b
         
         interface
-            real(8) function func(x)
-                real(8), intent(in) :: x
+            real function func(x)
+                real, intent(in) :: x
             end function func
         end interface
         
@@ -1197,9 +1197,9 @@ The routine can then be called by providing a function with the same interface a
 
 .. code-block:: Fortran
 
-    real(8) function myfunc(x)
+    real function myfunc(x)
         
-        real(8) :: x
+        real :: x
         
         myfunc = sin(x)**2
         
@@ -1328,10 +1328,10 @@ This tells the compiler to map the **func**-function to the functions **ifunc** 
         
     end function ifunc
 
-    real(8) function rfunc(x)
+    real function rfunc(x)
         
-        real(8), intent(in) :: x
-        rfunc = x / 42.0_8
+        real, intent(in) :: x
+        rfunc = x / 42.0
         
     end function rfunc
 
@@ -1346,7 +1346,7 @@ The **func**-function can now be called using either floating point values or in
         use special
         
         integer :: a = 42
-        real(8) :: b = 42.0_8
+        real :: b = 42.0
         
         a = func(a)
         b = func(b)
@@ -1378,7 +1378,7 @@ First, a vector type is defined in our module **vector_operations**. This is the
     module vector_operations
 
         type vector
-            real(8) :: components(3)
+            real :: components(3)
         end type vector
         ...
 
