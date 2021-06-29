@@ -72,15 +72,11 @@ Data types and declarations
 
 There are 5 built-in data types in Fortran:
 
-* integer, Integers
-
-* real, Floating point numbers
-
-* complex, Complex numbers
-
-* logical, Boolean values
-
-* character, Strings and characters
+* integer, Integers.
+* real, Floating point numbers.
+* complex, Complex numbers.
+* logical, Boolean values.
+* character, Strings and characters.
 
 The syntax for a variable declaration is:
 
