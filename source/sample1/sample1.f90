@@ -9,7 +9,7 @@ program sample1
 
 	write(*,*) x
 	write(*,*) y
-	write(*,*) ap
+	write(*,*) dp
 
     call myproc(k)
 
