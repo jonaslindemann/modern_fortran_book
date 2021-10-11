@@ -300,7 +300,7 @@ end subroutine rand_mat_s
 
 subroutine rand_vec_d(a, randMin, randMax)
 
-    real(dp), intent(inout) :: a(:,:)
+    real(dp), intent(inout) :: a(:)
     real(dp), intent(in) :: randMin, randMax
 
     call random_number(a)

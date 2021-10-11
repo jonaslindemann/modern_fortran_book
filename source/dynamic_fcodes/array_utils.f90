@@ -2,7 +2,7 @@ module array_utils
 
 contains
 
-subroutine writeArray(A)
+subroutine write_array(A)
 
 	real(8), dimension(:,:) :: A
 	integer :: rows, cols, i, j
@@ -19,6 +19,6 @@ subroutine writeArray(A)
 		
 	return
 	
-end subroutine writeArray
+end subroutine write_array
 
 end module array_utils

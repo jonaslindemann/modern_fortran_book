@@ -1,8 +1,11 @@
 program sample2
 
+    use mf_datatypes
+
 	implicit none
-	real(8), allocatable :: infield(:,:)
-	real(8), allocatable :: rowsum(:)
+
+    real(dp), allocatable :: infield(:,:)
+    real(dp), allocatable :: rowsum(:)
 	integer :: rows, i, j
 	
 	!  File unit numbers

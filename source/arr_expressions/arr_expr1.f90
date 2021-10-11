@@ -1,6 +1,6 @@
 program arr_expr1
 
-    use utils
+    use mf_utils
 
     real(sp) :: a(10,20), b(10,20), c(10,20)
     real(sp) :: u(5), v(5)

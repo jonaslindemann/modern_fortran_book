@@ -1,8 +1,8 @@
 program undef1
 
-    implicit none
+    use mf_datatypes
 
-    integer, parameter :: dp = selected_real_kind(15,300)
+    implicit none
 
     real(dp) :: a, b
     character(40) :: s1, s2

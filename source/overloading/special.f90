@@ -1,5 +1,7 @@
 module special
 
+use mf_datatypes
+
 interface func
 	module procedure ifunc, rfunc
 end interface
@@ -13,9 +15,9 @@ integer function ifunc(x)
 	
 end function ifunc
 
-real(8) function rfunc(x)
+real(dp) function rfunc(x)
 	
-	real(8), intent(in) :: x
+    real(dp), intent(in) :: x
 	rfunc = x / 42.0_8
 	
 end function rfunc

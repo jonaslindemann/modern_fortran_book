@@ -1,7 +1,9 @@
 module vector_operations
 
+    use mf_datatypes
+
 	type vector
-		real(8) :: components(3)
+        real(dp) :: components(3)
 	end type vector
 	
 	interface operator(+)

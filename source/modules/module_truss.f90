@@ -1,16 +1,14 @@
 module truss
 
-	!  Public variable declarations
+    use mf_datatypes
+    use mf_utils
+
+    ! Public variable declarations
 
 	! Variables that are visible for other programs
 	! and modules
 
-	integer, public, parameter :: &
-	dp = selected_real_kind(15,300)
-
 	! Private variables declarations
-
-	integer, private :: my_private_variable
 
 contains
 
@@ -55,19 +53,5 @@ subroutine bar3e(ex,ey,ez,ep,Ke)
 	return
 
 end subroutine bar3e
-
-subroutine writeMatrix(A)
-
-	real(dp) :: A(6,6)
-
-	! Print matrix to standard output
-
-	do i=1,6
-		write(*,'(6G10.4)') (A(i,j), j=1,6)
-	end do
-
-	return
-
-end subroutine writeMatrix
 
 end module truss

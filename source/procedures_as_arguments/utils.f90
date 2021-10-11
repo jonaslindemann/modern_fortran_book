@@ -1,11 +1,13 @@
 module utils
 
+    use mf_datatypes
+
 	implicit none
 
 contains
 
-real(8) function myfunc(x)
-	real(8), intent(in) :: x
+real(dp) function myfunc(x)
+    real(dp), intent(in) :: x
 	
 	myfunc = sin(x)
 	

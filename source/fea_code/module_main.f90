@@ -1,20 +1,22 @@
 program module_sample
 
-	use truss
+    use mf_datatypes
+    use mf_utils
+    use truss
 
-	implicit none
+    implicit none
 
-	real(ap) :: ex(2), ey(2), ez(2), ep(2)
-    real(ap) :: Ke(6,6)
+    real(dp) :: ex(2), ey(2), ez(2), ep(2)
+    real(dp) :: Ke(6,6)
 
-    ep(:) = (/ 1.0_ap, 1.0_ap /)
-    ex(:) = (/ 0.0_ap, 1.0_ap /)
-    ey(:) = (/ 0.0_ap, 1.0_ap /)
-    ez(:) = (/ 0.0_ap, 1.0_ap /)
+    ep(:) = (/ 1.0_dp, 1.0_dp /)
+    ex(:) = (/ 0.0_dp, 1.0_dp /)
+    ey(:) = (/ 0.0_dp, 1.0_dp /)
+    ez(:) = (/ 0.0_dp, 1.0_dp /)
 
-	call bar3e(ex,ey,ez,ep,Ke)
-	call writeMatrix(Ke)
+    call bar3e(ex, ey, ez, ep, Ke)
+    call print_matrix(Ke, 'Ke')
 
-	stop
+    stop
 
 end program module_sample

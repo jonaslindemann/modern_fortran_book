@@ -8,6 +8,6 @@ program dynamic_fcodes
 	
 	A = 42.0_8
 	
-	call writeArray(A)
+    call write_array(A)
 	
 end program dynamic_fcodes

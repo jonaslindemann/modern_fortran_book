@@ -1,21 +1,21 @@
 program allocatable_function
 
-	implicit none
-	
-	real :: A(20)
-	
-	A = createVector(20)
-	print *, size(A,1)
+    implicit none
+
+    real :: A(20)
+
+    A = create_vector(20)
+    print *, size(A,1)
 	
 contains
 
-function createVector(n)
+function create_vector(n)
 
-	real, allocatable, dimension(:) :: createVector 
-	integer, intent(in) :: n
+    real, allocatable, dimension(:) :: create_vector
+    integer, intent(in) :: n
+
+    allocate(create_vector(n))
 	
-	allocate(createVector(n))
-	
-end function createVector
+end function create_vector
 	
 end program allocatable_function

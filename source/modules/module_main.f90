@@ -1,5 +1,7 @@
 program module_sample
 
+    use mf_datatypes
+    use mf_utils
 	use truss
 
 	implicit none
@@ -19,7 +21,7 @@ program module_sample
 	allocate(Ke(6,6))
 
 	call bar3e(ex,ey,ez,ep,Ke)
-	call writeMatrix(Ke)
+    call print_matrix(Ke)
 
 	deallocate(Ke)
 
