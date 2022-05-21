@@ -8,11 +8,11 @@ https://modern-fortran-in-science-and-technology.readthedocs.io/en/latest/
 
 You can also find all the examples in the book in the **source** directory of this repo. All examples can be built using CMake as shown below:
 
-    git clone https://github.com/jonaslindemann/modern_fortran_book.git
-    cd modern_fortran_book/source
-    mkdir build
-    cd build
-    cmake ..
-    make
+    $ git clone https://github.com/jonaslindemann/modern_fortran_book.git
+    $ cd modern_fortran_book/source
+    $ mkdir build
+    $ cd build
+    $ cmake ..
+    $ make
   
 It will require a fortran compiler installed in the search path.
