@@ -7,11 +7,12 @@
 Welcome to Modern Fortran in Science and Technology's documentation!
 ====================================================================
 
+This book is an introduction in programming with Fortran 95/2003/2008 in science and technology. The book also covers methods for integrating Fortran code with other programming languages both dynamic (Python) and compiled languages (C++). An introduction in using modern development enrvironments such as QtCreator/Eclipse/Photran, for debugging and development is also given.
+
 .. toctree::
    :caption: Contents:
    :maxdepth: 1
 
-   intro
    chapter_fortran
    chapter_fortran_python
    chapter_fortran_projects
