@@ -13,7 +13,7 @@ program operator_overloading
     v2%components = (/0.0_dp, 1.0_dp, 0.0_dp/)
 	
 	v = v1 + v2
-	
+
 	print *, v
 
 end program operator_overloading

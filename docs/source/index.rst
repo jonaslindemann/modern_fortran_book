@@ -3,12 +3,13 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+====================================================================
 Welcome to Modern Fortran in Science and Technology's documentation!
 ====================================================================
 
 .. toctree::
-   :maxdepth: 2
    :caption: Contents:
+   :maxdepth: 1
 
    intro
    chapter_fortran
@@ -17,7 +18,6 @@ Welcome to Modern Fortran in Science and Technology's documentation!
    chapter_qtcreator
    app_exercises
    app_compiling_fortran
-
 
 
 Indices and tables

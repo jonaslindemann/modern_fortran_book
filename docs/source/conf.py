@@ -18,11 +18,11 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Modern Fortran in Science and Technology'
-copyright = '2020, Jonas Lindemann and Ola Dahlblom'
+copyright = '2020-2022, Jonas Lindemann and Ola Dahlblom'
 author = 'Jonas Lindemann and Ola Dahlblom'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0'
+release = '1.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -52,6 +52,37 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = 'sphinx_material'
+
+html_show_sourcelink = True
+html_sidebars = {
+    "**": ["logo-text.html", "globaltoc.html", "localtoc.html", "searchbox.html"]
+}
+
+html_theme_options = {
+
+    # Set the name of the project to appear in the navigation.
+    'nav_title': 'Modern Fortran in Science and Technology',
+
+    # Specify a base_url used to generate sitemap.xml. If not
+    # specified, then no sitemap will be built.
+    'base_url': 'https://project.github.io/project',
+
+    # Set the color and the accent color
+    'color_primary': 'blue',
+    'color_accent': 'light-blue',
+
+    # Set the repo location to get a badge with stats
+    'repo_url': 'https://github.com/jonaslindemann/modern_fortran_book',
+    'repo_name': 'Modern Fortran in Science and Technology',
+
+    # Visible levels of the global TOC; -1 means unlimited
+    'globaltoc_depth': 1,
+    # If False, expand all TOC entries
+    'globaltoc_collapse': False,
+    # If True, show hidden TOC entries
+    'globaltoc_includehidden': False,
+    'master_doc': False
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
