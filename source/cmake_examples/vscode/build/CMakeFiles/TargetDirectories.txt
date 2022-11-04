@@ -1,0 +1,3 @@
+C:/Users/Jonas Lindemann/Development/modern_fortran_book/source/cmake_examples/vscode/build/CMakeFiles/simple.dir
+C:/Users/Jonas Lindemann/Development/modern_fortran_book/source/cmake_examples/vscode/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Jonas Lindemann/Development/modern_fortran_book/source/cmake_examples/vscode/build/CMakeFiles/ZERO_CHECK.dir

@@ -7,7 +7,7 @@ program case_sample
 
     select case (value)
         case (:0)
-            write(*,*) 'Greater than one.'
+            write(*,*) 'Less than one.'
         case (1)
             write(*,*) 'Number one!'
         case (2:9)

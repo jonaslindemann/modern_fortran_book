@@ -84,7 +84,7 @@ The syntax for a variable declaration is:
 
     type [[,attribute]... ::] entity-list
 
-**type** defines the variable type and can be\ftype{integer}, \ftype{real}, \ftype{complex}, \ftype{logical}, \ftype{character}, or \ftype{type}( type-name ). \ftype{attribute} defines additional special attributes or how the variable is to be used. The following examples shows
+**type** defines the variable type and can be **integer**, **real**, **complex**, **logical, **character** or **type( type-name )**. **attribute** defines additional special attributes or how the variable is to be used. The following examples shows
 some typical Fortran variable declarations.
 
 .. code-block:: Fortran
@@ -127,7 +127,7 @@ To be able to choose the correct precision for a floating point variable, Fortra
     integer, parameter :: dp = selected_real_kind(15,300)
     real(kind=dp) :: X,Y
 
-In this example the floating point variable should have at least 15 significant decimals and could represent numbers from 10:math:`^{-300}` to 10:math:`^{300}`. For several common architectures **selected_real_kind** will return the value 8. The advantage of using the above approach is that the precision of the floating point values can be specified in a architectural independent way. The precision constant can also be used when
+In this example the floating point variable should have at least 15 significant decimals and could represent numbers from :math:`10^{-300}` to :math:`10^{300}`. For several common architectures **selected_real_kind** will return the value 8. The advantage of using the above approach is that the precision of the floating point values can be specified in a architectural independent way. The precision constant can also be used when
 specifying numbers in variable assignments as the following example illustrate.
 
 .. code-block:: Fortran
@@ -162,14 +162,14 @@ The program gives the following results:
     pi1 = 3.14159274101257
     pi2 = 3.14159265358979
 
-The scalar number assigned to the variable **pi1** is chosen by the compiler to be represented by the least number of bytes floating point precision, in this case \ftype{real(4)}, which is shown in the output from the above program.
+The scalar number assigned to the variable **pi1** is chosen by the compiler to be represented by the least number of bytes floating point precision, in this case **real(4)**, which is shown in the output from the above program.
 
 Variable declarations in Fortran always precedes the executable statements in the main program or in a subroutine. Declarations can also be placed directly after the **module** identifier in modules.
 
 Implicit type rule
 ------------------
 
-Variable do not have to be declared in Fortran. The default is that variables starting I, J,..., N are defined as \ftype{integer} and variables starting with A, B,... ,H or O, P,... , Z are defined as \ftype{real}. This kind of implicit variable declaration is not recommended as it can lead to programming errors when variables are misspelled. To avoid implicit variable declarations the following declaration can be placed first in a program or module:
+Variable do not have to be declared in Fortran. The default is that variables starting I, J,..., N are defined as **integer** and variables starting with A, B,... ,H or O, P,... , Z are defined as **real**. This kind of implicit variable declaration is not recommended as it can lead to programming errors when variables are misspelled. To avoid implicit variable declarations the following declaration can be placed first in a program or module:
 
 .. code-block:: Fortran
 

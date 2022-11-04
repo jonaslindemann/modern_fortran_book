@@ -5,3 +5,4 @@ source/bouncing_particles_oo
 *.exe
 *.user
 *.mod
+docs/.vscode/settings.json

@@ -50,7 +50,7 @@ function belongs to. The second argument is a special Python object
 containing the arguments that the function is called with.
 
 Next, the input arguments must be parsed. This is done using the
--function in the Python API. This function parses the input arguments, ,
+C-function in the Python API. This function parses the input arguments,
 for the required parameters. If no match is found the function returns
 NULL, which will trigger an exception in the Python interpreter. If a
 match is found the function will assign values to provided C-variables.
@@ -69,7 +69,7 @@ Argument parsing for our sum function is shown in the following code:
        return NULL;
 
 First, variables, and , are declared for storing the actual input
-arguments. The -function takes the input parameter, args, and processes
+arguments. The C-function takes the input parameter, args, and processes
 this according to a signature string describing the required Python
 arguments. Our function sum takes two double values as input arguments,
 the signature string for this is ”dd”.
@@ -82,9 +82,9 @@ Now we have all input data, so now we do our actual computation in C:
 
 To be able to use the computed value in Python it has to be converted to
 a PyObject. This can be done using the function . This function is
-similar to the -function as it also uses the signature string to define
+similar to the C-function as it also uses the signature string to define
 what Python-datatypes to create. This is used in the last part of the
--function to return a Python-datatype.
+C-function to return a Python-datatype.
 
 .. code-block:: C
 
@@ -226,11 +226,11 @@ Fortran routine as shown below:
        return Py_BuildValue("d", c);
    }
 
-The reason for the & operator is to pass the -variable as a reference to
+The reason for the & operator is to pass the C-variable as a reference to
 the Fortran routine.
 
 To build the modified extension module, the Fortran routine must be
-compiled separately and then provided as a -file to the script:
+compiled separately and then provided as a C-file to the script:
 
 .. code-block:: Python
 
@@ -272,7 +272,7 @@ the following simple Fortran routine will be wrapped as a module:
 
    end subroutine simple
 
-To be able to use F2PY effectively it is important that the -attribute
+To be able to use F2PY effectively it is important that the C-attribute
 is used on the subroutine arguments. If not specified, F2PY, will treat
 all subroutine parameters as input-variables and no output parameters
 can be passed back to the the calling Python routine.

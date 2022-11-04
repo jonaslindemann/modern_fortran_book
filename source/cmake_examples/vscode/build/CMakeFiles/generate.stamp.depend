@@ -1,0 +1,23 @@
+# CMake generation dependency list for this directory.
+C:/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeCInformation.cmake
+C:/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeCXXInformation.cmake
+C:/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake
+C:/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeGenericSystem.cmake
+C:/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake
+C:/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake
+C:/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeRCInformation.cmake
+C:/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake
+C:/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake
+C:/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake
+C:/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/MSVC-C.cmake
+C:/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/MSVC-CXX.cmake
+C:/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Platform/Windows-MSVC-C.cmake
+C:/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Platform/Windows-MSVC-CXX.cmake
+C:/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Platform/Windows-MSVC.cmake
+C:/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Platform/Windows.cmake
+C:/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Platform/WindowsPaths.cmake
+C:/Users/Jonas Lindemann/Development/modern_fortran_book/source/cmake_examples/vscode/CMakeLists.txt
+C:/Users/Jonas Lindemann/Development/modern_fortran_book/source/cmake_examples/vscode/build/CMakeFiles/3.23.2/CMakeCCompiler.cmake
+C:/Users/Jonas Lindemann/Development/modern_fortran_book/source/cmake_examples/vscode/build/CMakeFiles/3.23.2/CMakeCXXCompiler.cmake
+C:/Users/Jonas Lindemann/Development/modern_fortran_book/source/cmake_examples/vscode/build/CMakeFiles/3.23.2/CMakeRCCompiler.cmake
+C:/Users/Jonas Lindemann/Development/modern_fortran_book/source/cmake_examples/vscode/build/CMakeFiles/3.23.2/CMakeSystem.cmake

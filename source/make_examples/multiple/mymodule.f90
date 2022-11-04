@@ -1,6 +1,6 @@
 module mymodule
 
-contains
+contains 
 
 subroutine test
 

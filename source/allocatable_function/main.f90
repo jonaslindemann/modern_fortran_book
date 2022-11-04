@@ -2,9 +2,9 @@ program allocatable_function
 
     implicit none
 
-    real :: A(20)
+    real, allocatable, dimension(:) :: A
 
-    A = create_vector(20)
+    A = create_vector(30)
     print *, size(A,1)
 	
 contains
