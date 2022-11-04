@@ -21,6 +21,7 @@ This book is an introduction in programming with Fortran 95/2003/2008 in science
    chapter_qtcreator
    app_exercises
    app_compiling_fortran
+   references
 
 
 Indices and tables

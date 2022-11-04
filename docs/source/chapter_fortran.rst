@@ -5,7 +5,7 @@ The Fortran Language
 Fortran was the first high-level language and was developed in the fifties. The languages has since the developed through a number of standards Fortran IV (1966), Fortran 77, Fortran 90, Fortran 95, Fortran 2003, Fortran 2008 and the latest Fortran 2018. The advantages with standardised languages is that the code can be run on different computer architectures without modification. In every new standard the language has been extended with more modern language elements. To be compatible with previous standards older language elements are not removed. However, language elements that are considered bad or outdated can be removed after 2 standard revisions. As an example Fortran 90 is fully backwards compatible with Fortran 77, but in Fortran 95 some
 older language constructs where removed.
 
-The following sections gives a short introduction to the modern Fortran language from Fortran 90 and above. The description is centered on the most important language features. A more thorough description of the language can be found in the book Modern Fortran Explained \cite{metcalf00}
+The following sections gives a short introduction to the modern Fortran language from Fortran 90 and above. The description is centered on the most important language features. A more thorough description of the language can be found in the book Modern Fortran Explained [metcalfreid18]_.
 
 Program structure
 =================
@@ -556,7 +556,7 @@ Array storage
 
 Memory allocation by the operating system is done in linear blocks of bytes. The operating system does not have the concept of multidimensional arrays. This is a concept introduced by the programming language, in this case Fortran, to make it easier for us to implement algorithms and access values stored in memory.
 
-There are 2 conventions of storing 2D arrays in memory, by column and by row. Fortran as a convention stores arrays by column and C by row. The following figure~\cite{array_storage} illustrates this concept:
+There are 2 conventions of storing 2D arrays in memory, by column and by row. Fortran as a convention stores arrays by column and C by row. The following figure illustrates this concept:
 
 .. figure:: ../../images/array_storage.png
    :width: 100 %
@@ -905,7 +905,7 @@ There are other repetitive statements such as **forall** and **where** covered i
 Built-in functions
 ==================
 
-Fortran has a number of built-in functions covering a number of different areas. The following tables list a selection of these. For a more thorough description of the built-in function please see, Metcalf and Reid \cite{metcalf00}.
+Fortran has a number of built-in functions covering a number of different areas. The following tables list a selection of these. For a more thorough description of the built-in function please see, Metcalf and Reid [metcalfreid18]_.
 
 Mathematical functions
 ----------------------
@@ -1037,7 +1037,7 @@ The program produces the following output
     -.1925    -.1925    -.1925    0.1925    0.1925    0.1925
     -.1925    -.1925    -.1925    0.1925    0.1925    0.1925
 
-For a more thorough description of matrix handling in Fortran 90/95, see Metcalf and Reid \cite{metcalf00}
+For a more thorough description of matrix handling in Fortran 90/95, see Metcalf and Reid [metcalfreid18]_
 
 Elemental procedures
 --------------------
@@ -1090,7 +1090,7 @@ A subroutine is called using the **call** statement. The above subroutine is cal
 
 It should be noted that the names used for variables are local to each respective subroutine. Names of variables passed as arguments does not need to have the same name in the calling and called subroutines. It is the order of the arguments that determines how the variables are referenced from the calling subroutine.
 
-In the previous example illustrates how to make the subroutines independent of problem size. The dimensions of the arrays are passed using the **a** parameter instead of using constant values. The last index of an array does not have to specified, indicated with a *, as it is not needed to determine the address to array element.
+In the previous example illustrates how to make the subroutines independent of problem size. The dimensions of the arrays are passed using the **a** parameter instead of using constant values. The last index of an array does not have to specified, indicated with a \*, as it is not needed to determine the address to array element.
 
 Functions
 ---------
@@ -1505,25 +1505,26 @@ The program produces the following output:
                 156
             156
 
-\begin{table}
-\begin{center}
-\begin{tabular}{|l|l|}
-\hline
-Kod & Beskrivning \\
-\hline
-E   & Scientific notation. Values are converted to the format "-d.dddE+ddd". \\
-F   & Decimal notation. Values are converted to the format "-d ddd.ddd...". \\
-G   & Generic notation. Values are converted to the format -ddd.ddd or -d.dddE+ddd \\
-I   & Integers. \\
-A   & Strings \\
-TRn & Move :math:`n` positions right \\
-Tn  & Continue at position :math:`n` \\
-\hline
-\end{tabular}
-\end{center}
-\caption{Formatting codes in \fkeyw{read}/**write**}
-\label{table:formatkoder}
-\end{table}
+..
+    \begin{table}
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    Kod & Beskrivning \\
+    \hline
+    E   & Scientific notation. Values are converted to the format "-d.dddE+ddd". \\
+    F   & Decimal notation. Values are converted to the format "-d ddd.ddd...". \\
+    G   & Generic notation. Values are converted to the format -ddd.ddd or -d.dddE+ddd \\
+    I   & Integers. \\
+    A   & Strings \\
+    TRn & Move :math:`n` positions right \\
+    Tn  & Continue at position :math:`n` \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \caption{Formatting codes in \fkeyw{read}/**write**}
+    \label{table:formatkoder}
+    \end{table}
 
 During output a invisible cursor is moved from left to right. The format specifiers TR:math:`n` and T:math:`n` are used to move this cursor. TR:math:`n` moves the cursor :math:`n` positions to the right from the previous position. T:math:`n` places the cursor at position :math:`n`. Figure~\ref{fig:format_positiong} shows how this can be used in a write-statement.
 
@@ -1539,7 +1540,7 @@ The output routines in Fortran was originally intended to be used on row printer
 
     write(*,'(T1,A)') 'Hej hopp!'
 
-A more thorough description of the available format specifiers in Fortran is given in Metcalf and Reid~\cite{metcalf00}.
+A more thorough description of the available format specifiers in Fortran is given in Metcalf and Reid~[metcalfreid18]_.
 
 Reading and Writing from files
 ------------------------------
@@ -2103,24 +2104,34 @@ The class now has the ability to initialise its data variables. However, we don'
 
 .. code-block:: Fortran
 
-        ...
-        type particle_class
-            real :: m_pos(3)
-            real :: m_vel(3)
-        contains
-            procedure :: init => particle_init
-            procedure :: set_position => particle_set_position |\hladded|
-            procedure :: set_velocity => particle_set_velocity |\hladded|
-        end type particle_class
-        ...
+    module particles
+
+    ! ...
+
+    type particle_class
+        real :: m_pos(3)
+        real :: m_vel(3)
+    contains
+        procedure :: init => particle_init
+        procedure :: set_position => particle_set_position 
+        procedure :: set_velocity => particle_set_velocity
+    end type particle_class
+
+    contains
+
+    ! ...
+
+    end module
 
 When this has been done the implementations of these subroutines are added in the **contains**-section of the **parcticles**-modules:
 
 .. code-block:: Fortran
 
+    module particles
+
     contains
 
-    ...
+    ! ...
 
     subroutine particle_set_position(this, x, y ,z)
 
@@ -2157,22 +2168,22 @@ To retrieve values from the instance, 2 additional subroutines are needed, **get
 
     module particles
 
-        implicit none
+    implicit none
 
-        type particle_class
-            real :: m_pos(3)
-            real :: m_vel(3)
-        contains
-            procedure :: init
-            procedure :: set_position => particle_set_position
-            procedure :: set_velocity => particle_set_velocity
-            procedure :: get_position => particle_get_position |\hladded|
-            procedure :: get_velocity => particle_get_velocity |\hladded|
-        end type particle_class
+    type particle_class
+        real :: m_pos(3)
+        real :: m_vel(3)
+    contains
+        procedure :: init
+        procedure :: set_position => particle_set_position
+        procedure :: set_velocity => particle_set_velocity
+        procedure :: get_position => particle_get_position
+        procedure :: get_velocity => particle_get_velocity
+    end type particle_class
 
     contains
 
-    ...
+    ! ...
 
     subroutine particle_get_position(this, x, y ,z)
 
@@ -2196,14 +2207,18 @@ To retrieve values from the instance, 2 additional subroutines are needed, **get
 
     end subroutine particle_get_velocity
 
-    ...
+    ! ...
+
+    end module particles
 
 It is now possible to access the instance variables using these subroutines as shown in the following example:
 
 .. code-block:: Fortran
 
     real :: x, y, z
-    ...
+
+    ! ...
+
     call particle % get_position(x, y, z)
 
 It is also possible to use functions to access the instance variables, as shown in the following code:
@@ -2211,7 +2226,9 @@ It is also possible to use functions to access the instance variables, as shown 
 .. code-block:: Fortran
 
     real :: x, y, z
-    ...
+
+    ! ...
+
     x = particle % x()
 
 **x()** is a Fortran function member of **particle_class**.
@@ -2267,7 +2284,7 @@ In the previous code examples the internal state variables where encapsulated us
 .. code-block:: Fortran
 
     type particle_class
-    private |\hladded|
+    private
         real :: m_pos(3)
         real :: m_vel(3)
     contains
@@ -2314,7 +2331,7 @@ In a similar way it is possible to prevent access to member subroutines or funct
         procedure :: get_position => particle_get_position
         procedure :: get_velocity => particle_get_velocity
         procedure :: print => particle_print
-        procedure, private :: setup => particle_setup |\hladded|
+        procedure, private :: setup => particle_setup
     end type particle_class
 
 Here a private method **setup** has been added that can only be called for member subroutines of the **particle**-class.
@@ -2373,7 +2390,7 @@ The above type definition, will override the existing **init**-routine from the 
 
 The format of a call to a inherited routine is:
 
-.. code-block:: Fortran
+.. code-block::
 
     call [instance reference] \% [type definition name] \% [routine name]
 
