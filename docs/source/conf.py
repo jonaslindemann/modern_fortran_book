@@ -30,7 +30,11 @@ release = '1.1'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.imgconverter']
+extensions = [
+    'sphinx.ext.imgconverter',
+    'sphinx_copybutton',
+    'sphinx_design'
+    ]
 
 image_converter = "C:\\Program Files\\ImageMagick-7.0.10-Q16-HDRI\\magick.exe"
 image_converter_args=["-density", "300"]

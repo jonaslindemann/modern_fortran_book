@@ -1,3 +1,5 @@
-sphinx >= 3.2.1
+Sphinx >= 7.2
 docutils == 0.16
 sphinx-material
+sphinx_design
+sphinx-copybutton

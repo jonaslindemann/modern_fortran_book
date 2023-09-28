@@ -65,7 +65,7 @@ Variable names can consist of both upper case and lower case letters. It should 
 
     1a      ! First character not a letter
     a thing ! Contains a space character
-    _       ! Contains a non-alphanumeric character
+    %       ! Contains a non-alphanumeric character
 
 Data types and declarations
 ---------------------------
@@ -162,6 +162,14 @@ The program gives the following results:
     pi1 = 3.14159274101257
     pi2 = 3.14159265358979
 
+.. button-link:: https://godbolt.org/z/xsxzeM6ja
+    :color: primary
+    :outline:
+    :class: sd-fs-6
+    :align: left
+
+    Run example
+
 The scalar number assigned to the variable **pi1** is chosen by the compiler to be represented by the least number of bytes floating point precision, in this case **real(4)**, which is shown in the output from the above program.
 
 Variable declarations in Fortran always precedes the executable statements in the main program or in a subroutine. Declarations can also be placed directly after the **module** identifier in modules.
@@ -254,6 +262,13 @@ This will print the following:
       8.2890460584580950E-317
     My defined string
 
+.. button-link:: https://godbolt.org/z/sTebccsTs
+    :color: primary
+    :outline:
+    :class: sd-fs-6
+    :align: left
+
+    Run example
 
 The reason for the 8.28...E-317 value is that the variable reference **b** points to its given memory location, but no value has been assigned to this location and will contain whatever was in memory when the program was executed. Fortran will interpret the values at this location as a floating point value and present it as such. This illustrates why it is a good idea to initialise variables to 0.0_dp or make sure they will be assigned values from other variable references.
 
@@ -828,6 +843,14 @@ The following program example illustrate how case-statements can be used.
    :language: Fortran
    :linenos:
 
+.. button-link:: https://godbolt.org/z/5PnrGPTqo
+    :color: primary
+    :outline:
+    :class: sd-fs-6
+    :align: left
+
+    Run example
+
 
 Repetitive statements
 =====================
@@ -1026,6 +1049,15 @@ In the example the input parameters are assigned the following values:
    :language: Fortran
    :linenos:
 
+.. button-link:: https://godbolt.org/z/7eKGseGPE
+    :color: primary
+    :outline:
+    :class: sd-fs-6
+    :align: left
+
+    Run example
+
+
 The program produces the following output
 
 :: 
@@ -1140,6 +1172,14 @@ The program gives the following output.
     -.1925    -.1925    -.1925    0.1925    0.1925    0.1925
     -.1925    -.1925    -.1925    0.1925    0.1925    0.1925
 
+.. button-link:: https://godbolt.org/z/jvv3o4faP
+    :color: primary
+    :outline:
+    :class: sd-fs-6
+    :align: left
+
+    Run example
+
 Keyword and optional arguments
 ------------------------------
 
@@ -1169,6 +1209,14 @@ In addition of having optional parameters, subroutine parameters can also be spe
 .. literalinclude:: ../../source/optional_arguments/main.f90
    :language: Fortran
    :linenos:
+
+.. button-link:: https://godbolt.org/z/7jGhavbfq
+    :color: primary
+    :outline:
+    :class: sd-fs-6
+    :align: left
+
+    Run example
 
 In the last call the **topping** keyword is used to specify the last optional argument, but leaving the **flavor** parameter undefined.
 
