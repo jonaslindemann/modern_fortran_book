@@ -73,27 +73,11 @@ As Qt Creator is not used by default for Fortran development, additional support
 Installing project and highlighting templates
 ---------------------------------------------
 
-Go to the user configuration directory of Qt Creator
+Detailed instructions on how to install the Qt Creator extensions are available here:
 
-::
+`https://github.com/jonaslindemann/qtcreator-fortran <https://github.com/jonaslindemann/qtcreator-fortran>`_
 
-   cd ~/.config/QtProject/qtcreator
-
-Download this archive:
-
-::
-
-   wget https://github.com/jonaslindemann/qtcreator-fortran/archive/master.zip
-
-Unzip the archive:
-
-::
-
-   unzip master.zip
-
-Restart Qt Creator.
-
-A video on how to install the extensions are also available on `YouTube <https://youtu.be/hOs3cfhnu7o>`_.
+A video on how to install the extensions is also available on `YouTube <https://youtu.be/hOs3cfhnu7o>`_.
 
 Creating a Fortran project
 ==========================
