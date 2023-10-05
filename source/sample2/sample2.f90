@@ -2,54 +2,55 @@ program sample2
 
     use mf_datatypes
 
-	implicit none
+    implicit none
 
     real(dp), allocatable :: infield(:,:)
     real(dp), allocatable :: rowsum(:)
-	integer :: rows, i, j
+
+    integer :: rows, i, j
 	
-	!  File unit numbers
-	
-	integer, parameter :: infile = 15
-	integer, parameter :: outfile = 16
+    !  File unit numbers
 
-	!  Allocate matrices
+    integer, parameter :: infile = 15
+    integer, parameter :: outfile = 16
 
-	rows=5
-	allocate(infield(3,rows))
-	allocate(rowsum(rows))
+    !  Allocate matrices
 
-	!  Open the file 'indata.dat' for reading
+    rows=5
+    allocate(infield(3,rows))
+    allocate(rowsum(rows))
 
-	open(unit=infile,file='indata.dat',&
-		access='sequential',&
-		action='read')
-		
-	!  Open the file 'utdata.dat' for writing
-		
-	open(unit=outfile,file='utdata.dat',&
-		access='sequential',&
-		action='write')
+    !  Open the file 'indata.dat' for reading
 
-	!  Read input from file
+    open(unit=infile,file='indata.dat',&
+        access='sequential',&
+        action='read')
 
-	do i=1,rows
-		read(infile,*) (infield(j,i),j=1,3)
-		rowsum(i)=&
-			infield(1,i)+infield(2,i)+infield(3,i)
-		write(outfile,*) rowsum(i)
-	end do
+    !  Open the file 'utdata.dat' for writing
 
-	!  Close files
+    open(unit=outfile,file='utdata.dat',&
+        access='sequential',&
+        action='write')
 
-	close(infile)
-	close(outfile)
+    !  Read input from file
 
-	!  Free used memory
+    do i=1,rows
+        read(infile,*) (infield(j,i),j=1,3)
+        rowsum(i)=&
+                infield(1,i)+infield(2,i)+infield(3,i)
+        write(outfile,*) rowsum(i)
+    end do
 
-	deallocate(infield)
-	deallocate(rowsum)
-	
-	stop
+    !  Close files
+
+    close(infile)
+    close(outfile)
+
+    !  Free used memory
+
+    deallocate(infield)
+    deallocate(rowsum)
+
+    stop
 	
 end program sample2

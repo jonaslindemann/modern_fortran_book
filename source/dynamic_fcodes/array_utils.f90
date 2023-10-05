@@ -4,20 +4,21 @@ contains
 
 subroutine write_array(A)
 
-	real(8), dimension(:,:) :: A
-	integer :: rows, cols, i, j
-	character(255) :: fmt
-		
-	rows = size(A,1)
-	cols = size(A,2)
-		
-	write(fmt, '(A,I1,A)') '(',cols, 'G8.3)'  
+    real(8), dimension(:,:) :: A
+    integer :: rows, cols, i, j
+    character(255) :: fmt
 
-	do i=1,rows
-		print fmt, (A(i,j), j=1,cols)
-	end do
-		
-	return
+    rows = size(A,1)
+    cols = size(A,2)
+
+    write(fmt, '(A,I1,A)') '(',cols, 'G8.3)'
+    print*, fmt
+
+    do i=1,rows
+            print fmt, (A(i,j), j=1,cols)
+    end do
+
+    return
 	
 end subroutine write_array
 

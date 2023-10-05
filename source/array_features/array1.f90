@@ -11,5 +11,4 @@ program array1
 
     print*, A
 
-
 end program array1

@@ -1,18 +1,18 @@
 program strings2
 
-	implicit none
+    implicit none
 
-	integer :: i
-	character(20) :: c
+    integer :: i
+    character(20) :: c
 
-	c = '5'
-	read(c,'(I5)') i
-	write(*,*) i 
+    c = '5'
+    read(c,'(I5)') i
+    write(*,*) i
 
-	i = 42
-	write(c,'(I5)') i
-	write(*,*) c
+    i = 42
+    write(c,'(I5)') i
+    write(*,*) c
 
-	stop
+    stop
 
 end program strings2

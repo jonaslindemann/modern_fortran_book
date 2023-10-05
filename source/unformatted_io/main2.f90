@@ -11,9 +11,9 @@ program unformatted_io_2
     ! ---- Define particle data type
 
     type particle
-            real :: position(3)
-            real :: velocity(3)
-            real :: mass
+        real :: position(3)
+        real :: velocity(3)
+        real :: mass
     end type particle
 
     ! ---- Program variables

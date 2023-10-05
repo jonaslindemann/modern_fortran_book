@@ -1,12 +1,12 @@
 program dynamic_fcodes
 
-	use array_utils
+    use array_utils
 
-	implicit none
-	
-	real(8) :: A(6,6)
-	
-	A = 42.0_8
+    implicit none
+
+    real(8) :: A(9,9)
+
+    A = 42.0_8
 	
     call write_array(A)
 	
