@@ -1574,11 +1574,12 @@ The program produces the following output:
     \label{table:formatkoder}
     \end{table}
 
-During output a invisible cursor is moved from left to right. The format specifiers TR:math:`n` and T:math:`n` are used to move this cursor. TR:math:`n` moves the cursor :math:`n` positions to the right from the previous position. T:math:`n` places the cursor at position :math:`n`. Figure~\ref{fig:format_positiong} shows how this can be used in a write-statement.
+During output a invisible cursor is moved from left to right. The format specifiers TR:math:`n` and T:math:`n` are used to move this cursor. TR:math:`n` moves the cursor :math:`n` positions to the right from the previous position. T:math:`n` places the cursor at position :math:`n`. :numref:`fig-format-positioning` shows how this can be used in a write-statement.
 
 .. figure:: ../../images/format_positioning.svg
    :width: 100 %
    :alt: Positioning of output in Fortran 90/95
+   :name: fig-format-positioning
 
    Positioning of output in Fortran 90/95
 
@@ -1638,14 +1639,13 @@ The generated format code can now be used when printing the incoming array **A**
 
 .. code-block:: Fortran
 
-        ...
+     ...
         do i=1,rows
             print fmt, (A(i,j), j=1,cols)
         end do
             
         return
-    
-    end subroutine writeArray
+     end subroutine writeArray
 
 In the following main program, the implemented **writeArray** subroutine is used to print a 6 by 6 matrix.
 
@@ -1764,6 +1764,7 @@ Reading the same array back from disk is just as easy, using the **read**-statem
 
 It is also possible to write several variables to disk using multiple **write**- statements.
 
+
 .. code-block:: Fortran
 
     real :: A(100), B(200)
@@ -1876,11 +1877,12 @@ In the following code a file is opened for reading. Error handling code is added
    :language: Fortran
    :linenos:
 
-Figure~\ref{fig:error_handling} shows the flow of the program.
+:numref:`fig-error-handling` shows the flow of the program.
 
 .. figure:: ../../images/error_handling.svg
    :width: 35 %
    :alt: Error handling i Fortran I/O operations
+   :name: fig-error-handling
 
    Error handling i Fortran I/O operations
 
