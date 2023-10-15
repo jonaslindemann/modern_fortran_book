@@ -290,8 +290,7 @@ Here the ``$<`` variable denotes the first prerequisite, . The target
 macro, ``$@``, is also used to define the outputfile for the compiler.
 
 There are several more internal macros that can be used in makefiles.
-For more information please see the GNU Make documenation
-:raw-latex:`\cite{gnumake12}`.
+For more information please see the GNU Make documenation [gnumake12]_.
 
 Suffix rules
 ------------
@@ -420,7 +419,7 @@ these dependencies in the make file. To illustrate this, consider the
 following example:
 
 myprog.f90
-   Main fortran program. Uses the mymodule module located in the
+   Main Fortran program. Uses the mymodule module located in the
    mymodule.f90 source file.
 
 mymodule.f90
@@ -766,7 +765,7 @@ This command extracts the filename component of the path and stores it
 in the variable . Next, an if-statement has to implemented that queries
 for different compilers. A string comparison can be done using the
 operator in CMake. Compilation flags for CMake are stored in for release
-mode flags and for debug flags. An example fo this king of conditional
+mode flags and for debug flags. An example of this kind of conditional
 compilation statement is shown below (from
 :raw-latex:`\cite{cmakecond12}`):
 
