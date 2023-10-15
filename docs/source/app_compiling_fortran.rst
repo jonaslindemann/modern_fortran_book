@@ -157,13 +157,12 @@ for these errors, gfortran can add checks in the executable for these.
 To enable a certain check the -switch can be used to enable specific
 checks. Common checks are:
 
- -  Accessing array elements outside its bounds.
- -  Modification of loop variables.
- -  Memory allocation and deallocation.
- -  Runtime checks for pointer handling.
- -  Check for when an array-temporary has to be created for passing an
-   argument.
- -  Add all available runtime checks.
+ - Accessing array elements outside its bounds.
+ - Modification of loop variables.
+ - Memory allocation and deallocation.
+ - Runtime checks for pointer handling.
+ - Check for when an array-temporary has to be created for passing an argument.
+ - Add all available runtime checks.
 
 It is important to remove these checks in the final code as they add an
 additional overhead in the execution speed.
