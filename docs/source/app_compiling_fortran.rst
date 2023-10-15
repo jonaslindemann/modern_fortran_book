@@ -10,7 +10,7 @@ Compiling single source Fortran programs
 ========================================
 
 To compile a simple Fortran 90 source file into an executable, execute
-the -command with the source file as the only argument:
+the `gfortran`-command with the source file as the only argument:
 
 ::
 
@@ -20,7 +20,7 @@ the -command with the source file as the only argument:
    $ ls
    a.out       myprog.f90
 
-This produces an executable called , which can be executed using the
+This produces an executable called `a.out`, which can be executed using the
 following command:
 
 :: 
@@ -28,9 +28,9 @@ following command:
    $ ./a.out 
     Hello, World!
 
-By default, the name of the executable will be , which is not always the
+By default, the name of the executable will be `a.out`, which is not always the
 best name for an executable. To tell the compiler to name the executable
-to something more meaningful the command line switch, , can be used as
+to something more meaningful the command line switch `o` can be used as
 shown in the following example:
 
 :: 
@@ -92,7 +92,7 @@ To debug a compiled executable using gdb or a graphical debugger, the
 executable needs to have debugging information included in the binary.
 By default gfortran does not add any debugging information in the
 executable. To tell the compiler to include this in the binary, the
--switch must be used. The following commands show how a debug enabled
+`g`-switch must be used. The following commands show how a debug enabled
 executable is built:
 
 ::
@@ -157,13 +157,12 @@ for these errors, gfortran can add checks in the executable for these.
 To enable a certain check the -switch can be used to enable specific
 checks. Common checks are:
 
- -  Accessing array elements outside its bounds.
- -  Modification of loop variables.
- -  Memory allocation and deallocation.
- -  Runtime checks for pointer handling.
- -  Check for when an array-temporary has to be created for passing an
-   argument.
- -  Add all available runtime checks.
+ - Accessing array elements outside its bounds.
+ - Modification of loop variables.
+ - Memory allocation and deallocation.
+ - Runtime checks for pointer handling.
+ - Check for when an array-temporary has to be created for passing an argument.
+ - Add all available runtime checks.
 
 It is important to remove these checks in the final code as they add an
 additional overhead in the execution speed.

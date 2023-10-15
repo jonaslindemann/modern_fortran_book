@@ -1574,11 +1574,12 @@ The program produces the following output:
     \label{table:formatkoder}
     \end{table}
 
-During output a invisible cursor is moved from left to right. The format specifiers TR:math:`n` and T:math:`n` are used to move this cursor. TR:math:`n` moves the cursor :math:`n` positions to the right from the previous position. T:math:`n` places the cursor at position :math:`n`. Figure~\ref{fig:format_positiong} shows how this can be used in a write-statement.
+During output a invisible cursor is moved from left to right. The format specifiers TR:math:`n` and T:math:`n` are used to move this cursor. TR:math:`n` moves the cursor :math:`n` positions to the right from the previous position. T:math:`n` places the cursor at position :math:`n`. :numref:`fig-format-positioning` shows how this can be used in a write-statement.
 
 .. figure:: ../../images/format_positioning.svg
    :width: 100 %
    :alt: Positioning of output in Fortran 90/95
+   :name: fig-format-positioning
 
    Positioning of output in Fortran 90/95
 
@@ -1588,7 +1589,7 @@ The output routines in Fortran was originally intended to be used on row printer
 
     write(*,'(T1,A)') 'Hej hopp!'
 
-A more thorough description of the available format specifiers in Fortran is given in Metcalf and Reid~[metcalfreid18]_.
+A more thorough description of the available format specifiers in Fortran is given in Metcalf and Reid [metcalfreid18]_.
 
 Reading and Writing from files
 ------------------------------
@@ -1638,14 +1639,13 @@ The generated format code can now be used when printing the incoming array **A**
 
 .. code-block:: Fortran
 
-        ...
+     ...
         do i=1,rows
             print fmt, (A(i,j), j=1,cols)
         end do
             
         return
-    
-    end subroutine writeArray
+     end subroutine writeArray
 
 In the following main program, the implemented **writeArray** subroutine is used to print a 6 by 6 matrix.
 
@@ -1746,7 +1746,7 @@ Unformatted I/O
 
 In the previous sections data was read and written in human readable text format. For larger data structures this can be very inefficient. To solve this Fortran can also write data in its native binary format directly to disk. This can save space and can also be read and written much faster to disk. However, the binary format is not standardised and differs between different hardware platforms, preventing files to be used on different hardware.
 
-Reading and writing binary data is done using the same **read**- and wr**write**-ite statements as before, but without the formatting options. Writing an array to disk in binary form can be done with just one simple statement:
+Reading and writing binary data is done using the same **read**- and **write**- statements as before, but without the formatting options. Writing an array to disk in binary form can be done with just one simple statement:
 
 .. code-block:: Fortran
 
@@ -1763,6 +1763,7 @@ Reading the same array back from disk is just as easy, using the **read**-statem
     read(ir) A
 
 It is also possible to write several variables to disk using multiple **write**- statements.
+
 
 .. code-block:: Fortran
 
@@ -1876,11 +1877,12 @@ In the following code a file is opened for reading. Error handling code is added
    :language: Fortran
    :linenos:
 
-Figure~\ref{fig:error_handling} shows the flow of the program.
+:numref:`fig-error-handling` shows the flow of the program.
 
 .. figure:: ../../images/error_handling.svg
    :width: 35 %
    :alt: Error handling i Fortran I/O operations
+   :name: fig-error-handling
 
    Error handling i Fortran I/O operations
 
@@ -2065,7 +2067,7 @@ In Fortran 2003 object-oriented features where added to the language, making For
 
 The functionality and data structures of objects are defined in classes in most programming object-oriented languages. Classes can be seen as templates for objects. When an object is to be created the class is used as the template for the new object. Created objects are also called instances of a class.
 
-In Fortran the object-oriented features are implemented by extending the derived datatype concepts of fortran 90. A derived datatype now has a **contains**-section in which the procedures of the objects are specified. Derived datatypes are now also by definition objects or instances of the derived type.
+In Fortran the object-oriented features are implemented by extending the derived datatype concepts of Fortran 90. A derived datatype now has a **contains**-section in which the procedures of the objects are specified. Derived datatypes are now also by definition objects or instances of the derived type.
 
 To illustrate the concepts, a simple particle object is defined as an object in Fortran. The particle object is defined as a derived data type in a module, particles. To eliminate any name clashes when creating new objects of this type, the derived type is given the name, **particle_class**. This is also fits the object-oriented model of derived type being equivalent to classes. The initial class definition then becomes:
 
