@@ -492,7 +492,7 @@ Compiling code with cmake
 
 To use CMake, a CMakeLists.txt file has to be created. This is a normal
 text files with special CMake statements in it. Usually this files
-starts with a . This prevents the CMakeLists.txt file to be used by a
+starts with a `cmake_minimum_required`. This prevents the CMakeLists.txt file to be used by a
 too old cmake. The first actual statement is usually `project`-function defining
 the name of the project.
 
