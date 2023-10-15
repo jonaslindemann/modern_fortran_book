@@ -4,7 +4,7 @@ Qt Creator for Fortran
 
 Qt Creator is a integrated development environment, IDE, for C++ and Qt, but can be easily adapted as a development environment for Fortran using plugins provided together with this book.
 
-The user interface of Qt Creator resembles the one found in commercial alternatives such as Microsoft Visual Studio or Inte Visual Fortran. This chapter gives a short introduction on how to get started with this development enviroment.
+The user interface of Qt Creator resembles the one found in commercial alternatives such as Microsoft Visual Studio or Intel Visual Fortran. This chapter gives a short introduction on how to get started with this development enviroment.
 
 To be able to use the Fortran Project templates and compile Fortran code in Qt Creator, require the following pre-requisites:
 

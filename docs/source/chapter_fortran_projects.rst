@@ -493,7 +493,7 @@ Compiling code with cmake
 To use CMake, a CMakeLists.txt file has to be created. This is a normal
 text files with special CMake statements in it. Usually this files
 starts with a . This prevents the CMakeLists.txt file to be used by a
-too old cmake. The first actual statement is usually -function defining
+too old cmake. The first actual statement is usually `project`-function defining
 the name of the project.
 
 .. code-block:: CMake
@@ -505,13 +505,13 @@ The name of the project is not the same as the executable but is used
 when generating project files for development environments.
 
 CMake by default does not support Fortran, so a special function,
--function is used to enable this:
+`enable_language`-function is used to enable this:
 
 .. code-block:: CMake
 
    enable_language(Fortran)
 
-To create an executable the -function is used. This command takes an
+To create an executable the `add_executable`-function is used. This command takes an
 executable name as the first argument and a list of source files.
 
 .. code-block:: CMake
@@ -629,7 +629,7 @@ becomes:
    target_link_libraries(simple blas m)
 
 To show what switches that are actually used when building the
-executable, the , is set to . This will show the actual commands used
+executable, the `CMAKE_VERBOSE_MAKEFILE`, is set to `ON`. This will show the actual commands used
 during the build.
 
 ::
@@ -664,7 +664,7 @@ following if statement can be used:
        message("This is a Unix build.")
    endif (UNIX)
 
-is predefined variable that is true when building on Unix-type system.
+`UNIX` is a predefined variable that is true when building on Unix-type system.
 When running CMake on a Unix-type system will print ”This is a Unix
 build.” on the console.
 
@@ -687,7 +687,7 @@ target and adds different build options depending on the platform used:
 
 It is also possible to use variables in CMake. Variables can be both
 strings and lists of strings. A variable is created by using the
--function. The following example shows how a simple string variable is
+`set`-function. The following example shows how a simple string variable is
 created:
 
 .. code-block:: CMake
@@ -706,7 +706,7 @@ This will print the contents of the variable, . If not enclosed it will
 print the name of the variable.
 
 Variables can also be lists of values which can be iterated over.
-Creating a list is also done using the -function, as shown in this
+Creating a list is also done using the `set`-function, as shown in this
 example:
 
 .. code-block:: CMake
