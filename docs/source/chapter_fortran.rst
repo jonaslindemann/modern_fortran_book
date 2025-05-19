@@ -3,7 +3,7 @@ The Fortran Language
 ********************
 
 Fortran was the first high-level language and was developed in the fifties. The languages has since the developed through a number of standards Fortran IV (1966), Fortran 77, Fortran 90, Fortran 95, Fortran 2003, Fortran 2008 and the latest Fortran 2018. The advantages with standardised languages is that the code can be run on different computer architectures without modification. In every new standard the language has been extended with more modern language elements. To be compatible with previous standards older language elements are not removed. However, language elements that are considered bad or outdated can be removed after 2 standard revisions. As an example Fortran 90 is fully backwards compatible with Fortran 77, but in Fortran 95 some
-older language constructs where removed.
+older language constructs were removed.
 
 The following sections gives a short introduction to the modern Fortran language from Fortran 90 and above. The description is centered on the most important language features. A more thorough description of the language can be found in the book Modern Fortran Explained [metcalfreid18]_.
 
