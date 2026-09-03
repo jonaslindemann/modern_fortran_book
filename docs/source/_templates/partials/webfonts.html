@@ -1,0 +1,19 @@
+{#-
+  Overrides the theme's own partials/webfonts.html.
+
+  Shibuya ships with Inter and sets the font variables from an inline <style>
+  that is emitted after html_css_files, so it cannot be overridden from
+  _static/custom.css. Replacing the template swaps the font families and avoids
+  requesting Inter at all.
+-#}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Roboto", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Roboto", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+}
+</style>

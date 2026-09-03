@@ -4,8 +4,22 @@
    contain the root `toctree` directive.
 
 ===================================================
-Welcome to Modern Fortran in Science and Technology
+Modern Fortran in Science and Technology
 ===================================================
+
+.. Cover image, swapped by colour mode. Shibuya puts a "light" or "dark"
+   class on <html>, and its stylesheet already hides `.dark-only` under
+   `.light` and `.light-only` under `.dark`, so no extra CSS is needed.
+
+.. image:: images/fortran_cover_light.png
+   :width: 100.0%
+   :alt: Modern Fortran in Science and Technology
+   :class: light-only
+
+.. image:: images/fortran_cover_dark.png
+   :width: 100.0%
+   :alt: Modern Fortran in Science and Technology
+   :class: dark-only
 
 Authors: Jonas Lindemann and Ola Dahlblom
 
@@ -14,6 +28,7 @@ This book is an introduction in programming with Fortran 95/2003/2008 in science
 .. toctree::
    :caption: Contents:
    :maxdepth: 1
+   :hidden:
 
    chapter_fortran
    chapter_fortran_python

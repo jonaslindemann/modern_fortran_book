@@ -1,4 +1,4 @@
 Sphinx >= 7.2
-sphinx-material
+shibuya
 sphinx_design
 sphinx-copybutton

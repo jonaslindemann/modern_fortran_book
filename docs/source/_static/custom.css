@@ -1,0 +1,51 @@
+/* ---------------------------------------------------------------------------
+   Modern Fortran in Science and Technology - Shibuya theme customisations
+   ---------------------------------------------------------------------------
+
+   Transparent #734f96 top bar.
+
+   Shibuya paints the header background on the `.sy-head-blur` layer, which
+   sits behind the header content and applies a backdrop blur. The colour of
+   that layer comes from --sy-c-background-dropback, which is used nowhere
+   else, so overriding it tints the bar without affecting the rest of the page.
+   The alpha channel keeps the bar translucent, so content scrolls through it.
+
+   The same translucent value is used for both colour modes: it composites
+   over the page behind it, giving a soft lavender in light mode and a deep
+   purple in dark mode, with readable header text in both.
+
+   The html.dark block is required, not redundant. Shibuya sets its own dark
+   value under `html.dark` (specificity 0,1,1), which outranks a bare `:root`
+   (0,1,0) no matter the source order -- so without a matching dark selector
+   the header silently falls back to the theme's neutral grey in dark mode.
+--------------------------------------------------------------------------- */
+
+:root,
+html.dark {
+    /* #734f96 at 55% -- translucent enough to read as "transparent",
+       opaque enough to stay clearly purple. */
+    --sy-c-background-dropback: rgba(115, 79, 150, 0.55);
+    --mf-c-head-divider: rgba(115, 79, 150, 0.45);
+}
+
+.sy-head-blur {
+    /* Slightly stronger blur and a purple hairline under the bar. */
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    backdrop-filter: blur(14px) saturate(150%);
+    box-shadow: 0 1px 0 var(--mf-c-head-divider);
+}
+
+/* Keep the mobile drop-down menu in the same purple family as the bar. */
+@media (max-width: 767px) {
+    .sy-head-nav {
+        border-top-color: var(--mf-c-head-divider);
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   Wider code blocks: many Fortran listings are long lines.
+--------------------------------------------------------------------------- */
+
+.yue div.highlight pre {
+    font-size: 0.85rem;
+}

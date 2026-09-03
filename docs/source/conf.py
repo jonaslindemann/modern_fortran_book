@@ -36,7 +36,7 @@ extensions = [
     'sphinx_design'
     ]
 
-image_converter = "C:\\Program Files\\ImageMagick-7.0.10-Q16-HDRI\\magick.exe"
+image_converter = "C:\Program Files\ImageMagick-7.0.10-Q16-HDRI\magick.exe"
 image_converter_args=["-density", "300"]
 
 numfig = True
@@ -55,43 +55,59 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_material'
+html_theme = 'shibuya'
 
+html_title = 'Modern Fortran in Science and Technology'
 html_show_sourcelink = True
+
+html_logo = "_static/Fortran_logo.svg"
+
+# Shibuya builds the global table of contents into its own left sidebar, so
+# only the right-hand sidebar is configured here.
 html_sidebars = {
-    "**": ["logo-text.html", "globaltoc.html", "localtoc.html", "searchbox.html"]
+    "**": ["sidebars/localtoc.html", "sidebars/edit-this-page.html"]
 }
 
 html_theme_options = {
 
-    # Set the name of the project to appear in the navigation.
-    'nav_title': 'Modern Fortran in Science and Technology',
+    # Colour scheme. The top bar itself is tinted a translucent #734f96 in
+    # _static/custom.css via the --sy-c-background-dropback variable.
+    'accent_color': 'blue',
+    'color_mode': 'auto',
 
-    # Specify a base_url used to generate sitemap.xml. If not
-    # specified, then no sitemap will be built.
-    'base_url': 'https://project.github.io/project',
+    # Header navigation.
+    'nav_links': [
+        {'title': 'Fortran', 'url': 'chapter_fortran'},
+        {'title': 'Python', 'url': 'chapter_fortran_python'},
+        {'title': 'Projects', 'url': 'chapter_fortran_projects'},
+        {'title': 'Exercises', 'url': 'app_exercises'},
+    ],
 
-    # Set the color and the accent color
-    'color_primary': 'blue',
-    'color_accent': 'light-blue',
+    # Repository, shown as an icon in the header and used for
+    # the "Edit this page" link.
+    'github_url': 'https://github.com/jonaslindemann/modern_fortran_book',
 
-    # Set the repo location to get a badge with stats
-    'repo_url': 'https://github.com/jonaslindemann/modern_fortran_book',
-    'repo_name': 'Modern Fortran in Science and Technology',
+    # Global table of contents in the left sidebar.
+    'toctree_collapse': False,
+    'toctree_maxdepth': 2,
+    'toctree_titles_only': True,
+    'globaltoc_expand_depth': 1,
+}
 
-    # Visible levels of the global TOC; -1 means unlimited
-    'globaltoc_depth': 1,
-    # If False, expand all TOC entries
-    'globaltoc_collapse': False,
-    # If True, show hidden TOC entries
-    'globaltoc_includehidden': False,
-    'master_doc': False
+html_context = {
+    'source_type': 'github',
+    'source_user': 'jonaslindemann',
+    'source_repo': 'modern_fortran_book',
+    'source_version': 'master',
+    'source_docs_path': '/docs/source/',
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+html_css_files = ['custom.css']
 
 # -- Options for LaTeX output ------------------------------------------------
 
