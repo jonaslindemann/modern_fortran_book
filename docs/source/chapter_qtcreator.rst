@@ -6,6 +6,8 @@ Qt Creator is a integrated development environment, IDE, for C++ and Qt, but can
 
 The user interface of Qt Creator resembles the one found in commercial alternatives such as Microsoft Visual Studio or Intel Visual Fortran. This chapter gives a short introduction on how to get started with this development enviroment.
 
+This chapter relies on a plugin repository maintained alongside the book, and its screenshots are from an older version of Qt Creator, so the dialogs will not match the current one exactly. Readers who do not already use Qt Creator will probably find :doc:`chapter_vscode` an easier place to start.
+
 To be able to use the Fortran Project templates and compile Fortran code in Qt Creator, require the following pre-requisites:
 
 -  A working Fortran compiler available in the search path. On Windows this is best achieved by installing the MinGW packages when installing Qt Creator. On Mac OS X the gfortran compiler is available in the MacPorts or Brew distributions.

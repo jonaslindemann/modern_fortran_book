@@ -1,5 +1,7 @@
 program zero
 
+implicit none
+
 real,allocatable :: a(:)
     real :: b(0)
 

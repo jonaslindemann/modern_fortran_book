@@ -2,6 +2,8 @@ module utils
 
 use datatypes
 
+    implicit none
+
 interface print_matrix
     module procedure print_matrix_d, print_matrix_s
 end interface

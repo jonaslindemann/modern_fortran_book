@@ -14,15 +14,17 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
+import shutil
+
 
 # -- Project information -----------------------------------------------------
 
 project = 'Modern Fortran in Science and Technology'
-copyright = '2020-2022, Jonas Lindemann and Ola Dahlblom'
+copyright = '2020-2026, Jonas Lindemann and Ola Dahlblom'
 author = 'Jonas Lindemann and Ola Dahlblom'
 
 # The full version, including alpha/beta/rc tags
-release = '1.1'
+release = '1.2'
 
 
 # -- General configuration ---------------------------------------------------
@@ -36,8 +38,22 @@ extensions = [
     'sphinx_design'
     ]
 
-image_converter = "C:\Program Files\ImageMagick-7.0.10-Q16-HDRI\magick.exe"
-image_converter_args=["-density", "300"]
+# sphinx.ext.imgconverter only does anything when building LaTeX, where the
+# SVG figures have to be turned into something pdflatex can include.  Look for
+# ImageMagick rather than naming a path: a hardcoded one is wrong on every
+# machine except the one it was written on, and does not exist at all on Read
+# the Docs.
+#
+# Only "magick" is looked for, never "convert": on Windows that name belongs to
+# a filesystem tool in System32, and to several unrelated programs besides.
+# When magick is not found the extension keeps its own default, which is the
+# right thing on the Linux images where the PDF is built.
+
+_magick = shutil.which("magick")
+
+if _magick:
+    image_converter = _magick
+    image_converter_args = ["-density", "300"]
 
 numfig = True
 
@@ -77,9 +93,12 @@ html_theme_options = {
 
     # Header navigation.
     'nav_links': [
+        {'title': 'Start', 'url': 'chapter_getting_started'},
         {'title': 'Fortran', 'url': 'chapter_fortran'},
+        {'title': 'Parallel', 'url': 'chapter_parallel'},
         {'title': 'Python', 'url': 'chapter_fortran_python'},
         {'title': 'Projects', 'url': 'chapter_fortran_projects'},
+        {'title': 'VS Code', 'url': 'chapter_vscode'},
         {'title': 'Exercises', 'url': 'app_exercises'},
     ],
 

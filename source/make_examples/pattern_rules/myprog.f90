@@ -1,7 +1,7 @@
 program myprog
 
-	implicit none
+    implicit none
 
-	print*, 'Hello, World!'
+    print*, 'Hello, World!'
 
 end program myprog

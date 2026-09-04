@@ -3,6 +3,8 @@ module linalg
 use datatypes
 use utils
 
+implicit none
+
 interface solve
     module procedure solve_dp, solve_sp
 end interface solve
@@ -39,6 +41,7 @@ subroutine solve_sp(A, b)
 
     real(sp), intent(inout) :: A(:,:)
     real(sp), intent(inout) :: b(:,:)
+    integer :: ipiv(size(A,1))
     integer :: lda, ldb, n, nrhs
 
     lda = size(A,1)
@@ -46,7 +49,7 @@ subroutine solve_sp(A, b)
     n = size(A,1)
     nrhs = size(B,2)
 
-    call SGESV(n, nrhs, A, n, ipiv, b, n, err)
+    call SGESV(n, nrhs, A, lda, ipiv, b, ldb, err)
 
 end subroutine solve_sp
 

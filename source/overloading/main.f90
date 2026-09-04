@@ -13,5 +13,5 @@ program overloading
 
     print *, a
     print *, b
-	
+
 end program overloading

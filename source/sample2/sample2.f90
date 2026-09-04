@@ -8,7 +8,7 @@ program sample2
     real(dp), allocatable :: rowsum(:)
 
     integer :: rows, i, j
-	
+
     !  File unit numbers
 
     integer, parameter :: infile = 15
@@ -52,5 +52,5 @@ program sample2
     deallocate(rowsum)
 
     stop
-	
+
 end program sample2

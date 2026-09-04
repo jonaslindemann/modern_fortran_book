@@ -1,5 +1,7 @@
 program case_sample
 
+    implicit none
+
     integer :: value
 
     write(*,*) 'Enter a value'

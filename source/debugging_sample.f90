@@ -1,16 +1,18 @@
 program debugging_sample
 
+    implicit none
+
     integer :: input_array(10), output_array(10)
     integer :: i, k, n
     integer, parameter :: infile = 15
 
-    ! Läs tal från fil
+    ! LÃ¤s tal frÃ¥n fil
 
     open(unit=infile, file='input.dat', status='old')
     read(infile,*) n, (input_array(i),i=1,n)
     close(infile)
 
-    ! Kvadrera alla tal skilda från 0 och lagra
+    ! Kvadrera alla tal skilda frÃ¥n 0 och lagra
     ! i output\_array
 
     k = 0
@@ -21,14 +23,14 @@ program debugging_sample
         end if
     end do
 
-    ! Skriv ut alla kvadrerade värden
+    ! Skriv ut alla kvadrerade vÃ¤rden
 
-    write(*,'(A,I2)') 'Antal varden inlästa ', n
-    write(*,'(A,I2)') 'Antal varden skilda från 0', k
+    write(*,'(A,I2)') 'Antal varden inlÃ¤sta ', n
+    write(*,'(A,I2)') 'Antal varden skilda frÃ¥n 0', k
 
     do i=1,k
         write(*,'(A,I2,A,I4)') 'Element ',i, &
-			' har värdet ',output_array(i)
+            ' har vÃ¤rdet ',output_array(i)
     end do
 
     stop

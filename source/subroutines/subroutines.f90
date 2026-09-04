@@ -1,5 +1,7 @@
 program subroutine_sample
 
+    implicit none
+
     integer, parameter :: dp = &
     selected_real_kind(15,300)
 
@@ -69,10 +71,13 @@ end subroutine bar3e
 
 subroutine writeMatrix(A)
 
+    implicit none
+
     integer, parameter :: dp = &
     selected_real_kind(15,300)
 
     real(dp) :: A(6,6)
+    integer :: i, j
 
     ! Print matrix
 

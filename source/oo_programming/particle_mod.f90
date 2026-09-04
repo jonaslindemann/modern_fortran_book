@@ -1,5 +1,7 @@
 module particle_mod
 
+    implicit none
+
     type particle_sys_class
         integer :: nParticles
         real, allocatable :: pos(:,:)
@@ -18,6 +20,8 @@ contains
 subroutine init(this, n)
 
     class(particle_sys_class) :: this
+    integer, intent(in) :: n
+
     this % nParticles = n
 
     allocate(this % pos(n,3), this % vel(n,3))

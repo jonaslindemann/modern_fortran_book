@@ -6,6 +6,10 @@ This chapters is a quick guide on how to compile simple Fortran
 application needed for the exercises in this book. The examples uses the
 gfortran compiler.
 
+The chapter :doc:`chapter_getting_started` covers installing a compiler and
+building a first program in a few commands. This appendix goes through the
+compiler options in more detail.
+
 Compiling single source Fortran programs
 ========================================
 
@@ -30,7 +34,7 @@ following command:
 
 By default, the name of the executable will be `a.out`, which is not always the
 best name for an executable. To tell the compiler to name the executable
-to something more meaningful the command line switch `o` can be used as
+to something more meaningful the command line switch ``-o`` can be used as
 shown in the following example:
 
 :: 
@@ -58,7 +62,7 @@ source files as parameters on the command line as shown below:
 
 However, the order of the source files are important. If a module
 depends on a another module the dependent module needs to be built first
-as the first module uses a special -file generated during the
+as the first module uses a special ``.mod``-file generated during the
 compilation.
 
 Compiling with optimisation levels
@@ -66,16 +70,16 @@ Compiling with optimisation levels
 
 By default, gfortran, does not optimise the generated code in anyway. To
 increase performance optimisation options must be specified. There are 3
-levels default optimisation available in the , and compiler command line
-options.
+levels default optimisation available in the ``-O1``, ``-O2`` and ``-O3``
+compiler command line options.
 
--  O1 - Tries to reduce code size and execution time, but without
+-  ``-O1`` - Tries to reduce code size and execution time, but without
    increasing compilation time.
 
--  O2 - Adds allmost all optimisation that does not increase the code
+-  ``-O2`` - Adds allmost all optimisation that does not increase the code
    size. No loop unrolling is done.
 
--  O3 - Applies all optimisation options even those that increases code
+-  ``-O3`` - Applies all optimisation options even those that increases code
    size. Loop unrolling is done.
 
 To compile with optimisation just add the above options as the first
@@ -92,7 +96,7 @@ To debug a compiled executable using gdb or a graphical debugger, the
 executable needs to have debugging information included in the binary.
 By default gfortran does not add any debugging information in the
 executable. To tell the compiler to include this in the binary, the
-`g`-switch must be used. The following commands show how a debug enabled
+``-g``-switch must be used. The following commands show how a debug enabled
 executable is built:
 
 ::
@@ -108,11 +112,12 @@ Compiling with more detailed code checking
 ==========================================
 
 Gfortran by default does not report all code issues in the source code.
-The level of code checks can be increased by using the or switches. The
-option warns of the use of extensions to the used Fortran standard (by
-default Fortran 95). Can also be used together with the switches, , and
-to check for extension to other Fortran standards. In the below example
-the code is compiled with the option:
+The level of code checks can be increased by using the ``-pedantic`` or
+``-Wall`` switches. The ``-pedantic`` option warns of the use of
+extensions to the used Fortran standard (by default Fortran 95). It can
+also be used together with the switches, ``-std=f95``, ``-std=f2003``
+and ``-std=f2008``, to check for extension to other Fortran standards.
+In the below example the code is compiled with the ``-pedantic`` option:
 
 :: 
 
@@ -132,8 +137,8 @@ In the above example, gfortran complains about the use of a
 tab-character in the source files. The tab-character is not part of the
 Fortran standard.
 
-The switch tells the compiler to check for code practices that should be
-avoided. The example below shows how it can be used:
+The ``-Wall`` switch tells the compiler to check for code practices that
+should be avoided. The example below shows how it can be used:
 
 ::
 
@@ -154,15 +159,16 @@ Compiling with runtime checks
 
 Some application errors can not be detected at compile time. To check
 for these errors, gfortran can add checks in the executable for these.
-To enable a certain check the -switch can be used to enable specific
-checks. Common checks are:
+To enable a certain check the ``-fcheck=``-switch can be used to enable
+specific checks. Common checks are:
 
- - Accessing array elements outside its bounds.
- - Modification of loop variables.
- - Memory allocation and deallocation.
- - Runtime checks for pointer handling.
- - Check for when an array-temporary has to be created for passing an argument.
- - Add all available runtime checks.
+ - ``-fcheck=bounds`` - Accessing array elements outside its bounds.
+ - ``-fcheck=do`` - Modification of loop variables.
+ - ``-fcheck=mem`` - Memory allocation and deallocation.
+ - ``-fcheck=pointer`` - Runtime checks for pointer handling.
+ - ``-fcheck=array-temps`` - Check for when an array-temporary has to be
+   created for passing an argument.
+ - ``-fcheck=all`` - Add all available runtime checks.
 
 It is important to remove these checks in the final code as they add an
 additional overhead in the execution speed.

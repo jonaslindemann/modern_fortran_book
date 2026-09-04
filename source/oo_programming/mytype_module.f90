@@ -1,5 +1,7 @@
 module mytype_module
 
+    implicit none
+
     type mytype
         real :: myvalue(4) = 0.0
     contains

@@ -1,5 +1,7 @@
 module array_utils
 
+    implicit none
+
 contains
 
 subroutine write_array(A)
@@ -19,7 +21,7 @@ subroutine write_array(A)
     end do
 
     return
-	
+
 end subroutine write_array
 
 end module array_utils

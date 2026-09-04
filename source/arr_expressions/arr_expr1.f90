@@ -2,6 +2,8 @@ program arr_expr1
 
     use mf_utils
 
+    implicit none
+
     real(sp) :: a(10,20), b(10,20), c(10,20)
     real(sp) :: u(5), v(5)
 

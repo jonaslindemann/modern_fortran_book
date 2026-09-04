@@ -1,5 +1,7 @@
 program sample1
 
+    implicit none
+
     integer, parameter :: dp=selected_real_kind(15,300)
     real(kind=dp) :: x, y
     real(kind=dp) :: k(20,20)
@@ -18,9 +20,8 @@ program sample1
 contains
 
 subroutine myproc(k)
-	
-    integer, parameter :: dp=selected_real_kind(15,300)
-    real(kind=dp) :: k(20,20)
+
+    real(kind=dp), intent(inout) :: k(20,20)
 
     k=0.0_dp
     k(1,1) = 42.0_dp
@@ -30,4 +31,3 @@ subroutine myproc(k)
 end subroutine myproc
 
 end program sample1
-

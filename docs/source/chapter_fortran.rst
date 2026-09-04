@@ -48,7 +48,7 @@ This is also described in more detail in the following sections.
 Naming of variables
 -------------------
 
-Variables in modern Fortran consists of 1 to 31 alphanumeric characters (letters except   and , underscore and numbers). The first character of a variable name must be a letter. Allowable variable names can be:
+Variables in modern Fortran consists of 1 to 31 alphanumeric characters (letters except å, ä and ö, underscore and numbers). The first character of a variable name must be a letter. Allowable variable names can be:
 
 .. code-block:: Fortran
 
@@ -173,6 +173,60 @@ The program gives the following results:
 The scalar number assigned to the variable **pi1** is chosen by the compiler to be represented by the least number of bytes floating point precision, in this case **real(4)**, which is shown in the output from the above program.
 
 Variable declarations in Fortran always precedes the executable statements in the main program or in a subroutine. Declarations can also be placed directly after the **module** identifier in modules.
+
+Kind parameters from iso_fortran_env
+------------------------------------
+
+**selected_real_kind** states the precision that is needed and lets the compiler choose a kind that provides it. Fortran 2003 added a second way of naming the same kinds, the intrinsic module **iso_fortran_env**, which defines them as named constants.
+
+.. code-block:: Fortran
+
+    use iso_fortran_env, only: real32, real64, int32, int64
+
+    real(real64) :: x
+    integer(int64) :: n
+
+The numbers are bits. **real64** is the 64-bit floating point type that **selected_real_kind(15,300)** returns on most machines, and **int32** is the ordinary four byte integer. This is what most Fortran written today uses, and it is worth preferring to **real(8)**. The number in **real(8)** is a kind number, not a byte count, and a compiler is free to number its kinds however it wants, so **real(8)** is not guaranteed to be 64 bits at all.
+
+The constants can be used as literal suffixes in the same way as a **parameter** constant:
+
+.. code-block:: Fortran
+
+    x = 1.0_real64 / 3.0_real64
+
+The two forms are not in competition. **real64** says how many bits are wanted, **selected_real_kind(15,300)** says how many decimal digits and what exponent range are wanted, and the second is the right choice when that requirement is what actually matters. What is worth avoiding is a bare **real(8)**, and worse, a mixture of all three in the same program.
+
+**iso_fortran_env** contains more than kind numbers:
+
+.. csv-table::
+    :header: "Name", "Description"
+
+    "real32, real64, real128", "Kind numbers for 32, 64 and 128 bit floating point numbers"
+    "int8, int16, int32, int64", "Kind numbers for 1, 2, 4 and 8 byte integers"
+    "input_unit, output_unit, error_unit", "Unit numbers of standard input, standard output and standard error"
+    "iostat_end, iostat_eor", "The **iostat** values for end of file and end of record"
+    "compiler_version()", "A string describing the compiler that built the program"
+    "compiler_options()", "A string with the options it was built with"
+
+The following program uses most of them.
+
+.. literalinclude:: ../../source/iso_env/kinds.f90
+   :language: Fortran
+   :linenos:
+
+The program produces the following output:
+
+::
+
+     real32  1/3 =  0.333333343
+     real64  1/3 =  0.33333333333333331
+     largest int32 =  2147483647
+     2**40 as int64 =        1099511627776
+     decimal digits in real64 =          15
+     decimal exponent range   =         307
+     compiled by GCC version 11.2.0
+
+The **only**-clause on the **use**-statement lists what is taken from the module. It is not required, but it makes clear where a name such as **real64** comes from, and it stops a module from quietly bringing every name it defines into scope.
 
 Implicit type rule
 ------------------
@@ -613,6 +667,48 @@ When the allocated memory is no longer needed it can be deallocated using the co
 An important issue when using dynamically allocatable variable is to make sure the application does not ''leak''. ''Leaking'' is term used by applications that allocate memory during the execution and never deallocate used memory. If unchecked the application will use more and more resources and will eventually make the operating system start swapping and perhaps become also become unstable. A rule of thumb is that an
 **allocate** statement should always have corresponding **deallocate**.
 
+Automatic reallocation and move_alloc
+-------------------------------------
+
+Fortran 2003 relaxed the rule that an allocatable array has to be allocated before it can be assigned to. Assigning an array expression to an allocatable array allocates it, and if it is already allocated with a different shape it is deallocated and allocated again to fit the right hand side:
+
+.. code-block:: Fortran
+
+    real, allocatable :: a(:)
+
+    a = [1.0, 2.0, 3.0]      ! a is allocated with 3 elements
+    a = [a, 4.0]             ! a is reallocated with 4
+
+This is called allocation on assignment, or automatic reallocation of the left hand side. It removes most of the **allocate** and **deallocate** pairs that older code needs, and with them most of the leaks the previous section warns about. An allocatable variable is also deallocated automatically when it goes out of scope, which a pointer is not.
+
+The convenience has a cost. ``a = [a, 4.0]`` allocates a new array, copies the old contents into it and frees the old one, every single time. Growing an array one element at a time this way costs time proportional to the square of the number of elements, and for anything longer than a short list it is worth allocating in larger steps.
+
+That is what **move_alloc** is for. It moves an allocation from one allocatable variable to another without copying anything. The destination takes over the memory and the source is left deallocated.
+
+.. code-block:: Fortran
+
+    call move_alloc(from, to)
+
+The usual pattern is to allocate a larger array, copy into it once, and then hand the allocation over:
+
+.. literalinclude:: ../../source/move_alloc/realloc.f90
+   :language: Fortran
+   :linenos:
+
+The program produces the following output:
+
+::
+
+     size after first assignment :           3
+     size after appending        :           4
+     size after move_alloc       :           8
+     bigger still allocated      : F
+     contents                    :  1.0  2.0  3.0  4.0  0.0  0.0  0.0  0.0
+
+**bigger** is deallocated by the call, which is the point of it. There is only ever one array, and the contents are copied once rather than twice.
+
+Some versions of gfortran report a spurious ``is used uninitialized`` warning for an assignment that allocates a variable for the first time. The code is correct and the warning can be ignored.
+
 Array subobjects
 ----------------
 
@@ -925,6 +1021,59 @@ The following code shows a simple **do while**-statement printing the function :
 
 There are other repetitive statements such as **forall** and **where** covered int the array features sections.
 
+Loops that can run in any order
+-------------------------------
+
+An ordinary **do**-statement runs its iterations one after the other, in order. When the iterations do not actually depend on each other, Fortran 2008 provides **do concurrent** to say so:
+
+.. code-block:: Fortran
+
+    do concurrent (i = 1:n)
+        a(i) = sqrt(b(i))
+    end do
+
+The construct can also carry a mask, which limits it to the iterations where a condition holds:
+
+.. code-block:: Fortran
+
+    do concurrent (i = 1:n, mod(i, 2) == 0)
+        a(i) = sqrt(b(i))
+    end do
+
+Writing **do concurrent** is a promise that the iterations can be executed in any order, or all at the same time, and still give the same answer. It is up to the programmer to keep that promise, because the compiler assumes it. In particular the construct must not accumulate into a scalar, must not read in one iteration what another iteration writes, and must not be left with **exit** or **cycle**.
+
+Note that the construct does not by itself make a loop run in parallel. The standard grants permission and leaves it to the compiler to take it. **do concurrent**, together with OpenMP and coarrays, is covered in the chapter :doc:`chapter_parallel`.
+
+Stopping a program
+==================
+
+A program ends when execution reaches its **end program** statement. It can also be stopped anywhere else with the **stop**-statement:
+
+.. code-block:: Fortran
+
+    stop
+    stop 'input file is missing'
+    stop 4
+
+The optional stop code is either a string, which is written to the error unit, or an integer, which most operating systems make available as the exit status of the process. A shell script, a makefile or a test runner can then check whether the program succeeded.
+
+**stop** means that the program has finished. For a program that is giving up because something is wrong, Fortran 2008 adds **error stop**:
+
+.. code-block:: Fortran
+
+    error stop
+    error stop 1
+
+The difference is worth knowing. **error stop** always produces a nonzero exit status, so whatever started the program sees a failure rather than a success, and in a parallel program it terminates every image rather than only the one that executed it. A plain **stop** in one image of a coarray program leaves the others waiting.
+
+.. literalinclude:: ../../source/error_stop/stopping.f90
+   :language: Fortran
+   :linenos:
+
+Writing the message to **error_unit** rather than to the screen keeps diagnostics out of the program's real output, so that ``./stopping > results.txt`` still shows the error in the terminal. The unit is described in the section on input and output.
+
+Note also that a **stop** immediately before **end program**, as in several of the examples earlier in this chapter, adds nothing. It is a habit from older Fortran.
+
 Built-in functions
 ==================
 
@@ -939,7 +1088,7 @@ Mathematical functions
     "acos(x)", "Returns :math:`\arccos(x)`"
     "asin(x)", "Returns :math:`\arcsin(x)`"
     "atan(x)", "Returns :math:`\arctan(x)`"
-    "atan2(y,x)", "Returns :math:`\arctan(\frac{y}{x})` from :math:`-\pi` till math:`-\pi`"
+    "atan2(y,x)", "Returns :math:`\arctan(\frac{y}{x})` from :math:`-\pi` to :math:`\pi`"
     "cos(x)", "Returns :math:`\cos(x)`"
     "cosh(x)", "Returns :math:`\cosh(x)`"
     "exp(x)", "Returns :math:`e^{x}`"
@@ -1123,6 +1272,33 @@ A subroutine is called using the **call** statement. The above subroutine is cal
 It should be noted that the names used for variables are local to each respective subroutine. Names of variables passed as arguments does not need to have the same name in the calling and called subroutines. It is the order of the arguments that determines how the variables are referenced from the calling subroutine.
 
 In the previous example illustrates how to make the subroutines independent of problem size. The dimensions of the arrays are passed using the **a** parameter instead of using constant values. The last index of an array does not have to specified, indicated with a \*, as it is not needed to determine the address to array element.
+
+Argument intent
+---------------
+
+Nothing in the subroutine above says which of its arguments are read and which are written. The **intent** attribute states it:
+
+.. csv-table::
+    :header: "Attribute", "Description"
+
+    "intent(in)", "The argument is read and never changed. Assigning to it is an error the compiler catches."
+    "intent(out)", "The argument is undefined on entry and is expected to be given a value."
+    "intent(inout)", "The argument is both read and changed."
+
+.. code-block:: Fortran
+
+    subroutine scale_vector(v, factor)
+
+        implicit none
+
+        real, intent(inout) :: v(:)
+        real, intent(in) :: factor
+
+        v = v * factor
+
+    end subroutine scale_vector
+
+**intent** is optional, and a dummy argument declared without it behaves roughly like **intent(inout)**. It should still be written on every dummy argument of every procedure. It documents the interface for the reader, it lets the compiler catch a whole class of mistakes where a routine writes to something the caller did not expect it to, and it is a precondition for declaring a procedure **pure**, which is covered in the section on array features.
 
 Functions
 ---------
@@ -1534,7 +1710,7 @@ input are used (screen, keyboard or pipes).
 
     [repeat-count] format-descriptor w[.m]
 
-where **repeat-count** is the number of variables that this format applies to. **format-descriptor** defines the type of format specifier. **w** defined the width of the output field and **m** is the number of significant numbers or decimals in the output. The following example outputs some numbers using different format specifiers and table~\ref{table:formatkoder} show the most commonly used format specifiers.
+where **repeat-count** is the number of variables that this format applies to. **format-descriptor** defines the type of format specifier. **w** defined the width of the output field and **m** is the number of significant numbers or decimals in the output. The following example outputs some numbers using different format specifiers and :numref:`table-format-codes` shows the most commonly used format specifiers.
 
 .. literalinclude:: ../../source/formatting/formatting.f90
    :language: Fortran
@@ -1553,28 +1729,30 @@ The program produces the following output:
                 156
             156
 
-..
-    \begin{table}
-    \begin{center}
-    \begin{tabular}{|l|l|}
-    \hline
-    Kod & Beskrivning \\
-    \hline
-    E   & Scientific notation. Values are converted to the format "-d.dddE+ddd". \\
-    F   & Decimal notation. Values are converted to the format "-d ddd.ddd...". \\
-    G   & Generic notation. Values are converted to the format -ddd.ddd or -d.dddE+ddd \\
-    I   & Integers. \\
-    A   & Strings \\
-    TRn & Move :math:`n` positions right \\
-    Tn  & Continue at position :math:`n` \\
-    \hline
-    \end{tabular}
-    \end{center}
-    \caption{Formatting codes in \fkeyw{read}/**write**}
-    \label{table:formatkoder}
-    \end{table}
+.. list-table:: Formatting codes in **read**/**write**
+    :name: table-format-codes
+    :header-rows: 1
+    :widths: 15 85
 
-During output a invisible cursor is moved from left to right. The format specifiers TR:math:`n` and T:math:`n` are used to move this cursor. TR:math:`n` moves the cursor :math:`n` positions to the right from the previous position. T:math:`n` places the cursor at position :math:`n`. :numref:`fig-format-positioning` shows how this can be used in a write-statement.
+    * - Code
+      - Description
+    * - E
+      - Scientific notation. Values are converted to the format "-d.dddE+ddd".
+    * - F
+      - Decimal notation. Values are converted to the format "-ddd.ddd...".
+    * - G
+      - Generic notation. Values are converted to the format "-ddd.ddd" or
+        "-d.dddE+ddd".
+    * - I
+      - Integers.
+    * - A
+      - Strings.
+    * - TRn
+      - Move *n* positions to the right.
+    * - Tn
+      - Continue at position *n*.
+
+During output a invisible cursor is moved from left to right. The format specifiers TRn and Tn are used to move this cursor. TRn moves the cursor *n* positions to the right from the previous position. Tn places the cursor at position *n*. :numref:`fig-format-positioning` shows how this can be used in a write-statement.
 
 .. figure:: ../../images/format_positioning.svg
    :width: 100 %
@@ -1590,6 +1768,28 @@ The output routines in Fortran was originally intended to be used on row printer
     write(*,'(T1,A)') 'Hej hopp!'
 
 A more thorough description of the available format specifiers in Fortran is given in Metcalf and Reid [metcalfreid18]_.
+
+Standard input, output and error
+--------------------------------
+
+Using a star as the unit in a **read**- or **write**-statement means standard input or standard output. These streams also have unit numbers, which on many systems are 5 and 6 — that is why the next section recommends avoiding those numbers for files. Relying on the actual values is not portable, and there is no need to, because **iso_fortran_env** provides them as named constants.
+
+.. code-block:: Fortran
+
+    use iso_fortran_env, only: input_unit, output_unit, error_unit
+
+    write(output_unit, *) 'this goes to standard output'
+    write(error_unit, *)  'this goes to standard error'
+    read(input_unit, *) x
+
+**error_unit** is the one that changes how a program behaves. A program's results and its diagnostics are two different streams, and keeping them apart is what makes it possible to redirect one without the other:
+
+::
+
+   $ ./myprog > results.txt
+   error: input file is missing
+
+The error message still appears in the terminal while the results go to the file. A diagnostic written with ``write(*,*)`` ends up in the file instead, mixed in with the numbers.
 
 Reading and Writing from files
 ------------------------------
@@ -2035,8 +2235,34 @@ The usage of the **where**-statement is best illustrated with an example.
 
 In this example two arrays with the same size are used in the **where**-statement. In this case the values in the **B** array are assigned 0 when an element in the A array is larger than 1 otherwise the element in **B** is assigned the same value as in the **A** array.
 
-Elemental procedures
---------------------
+Pure and elemental procedures
+-----------------------------
+
+Most of the built-in functions in the previous sections accept either a scalar or a whole array, and the array version is simply the scalar one applied to every element. A procedure with that property is called elemental, and procedures written by the programmer can have it too.
+
+An elemental procedure is declared with the **elemental** prefix. Its dummy arguments and its result must be scalars, and every argument must have an explicit **intent**.
+
+.. literalinclude:: ../../source/pure_elemental/temperatures.f90
+   :language: Fortran
+   :linenos:
+
+**clamp** is written entirely in terms of scalars, but it can be called with an array, and then it returns an array of the same shape:
+
+.. literalinclude:: ../../source/pure_elemental/main.f90
+   :language: Fortran
+   :linenos:
+
+The program produces the following output:
+
+::
+
+     readings :  -300.00   -20.00     0.00    20.00   300.00
+     clamped  :   -50.00   -20.00     0.00    20.00    50.00
+     20 C in kelvin :   293.15
+
+**elemental** implies **pure**, which is the other prefix in the example. A **pure** procedure is one without side effects: it does not change anything except its own **intent(out)** and **intent(inout)** arguments, does not touch variables outside itself, does not perform input or output, and does not stop the program. In return the compiler knows that two calls with the same arguments give the same answer and that the order of the calls does not matter. That is what makes a procedure safe to call inside a **forall**- or **do concurrent**-construct, or from several threads at once.
+
+Fortran 2008 adds **impure elemental** for the case where a procedure should be applied element by element but does have a side effect, such as one that prints each element as it goes.
 
 Pointers
 ========
@@ -2397,11 +2623,12 @@ Classes in Fortran can be extended using the special attribute **extends** in it
     private
         real :: m_radius
     contains
+        procedure :: init => sphere_init
         procedure :: set_radius => sphere_set_radius
         procedure :: get_radius => sphere_get_radius
     end type sphere_particle_class
 
-In the type definition a private member variable, **m_radius** and its access methods, **set_radius** and **get_radius** are added. The access methods are similar to the access method of the **particle_class**.
+In the type definition a private member variable, **m_radius** and its access methods, **set_radius** and **get_radius** are added. The access methods are similar to the access method of the **particle_class**. The **init**-routine is also redeclared, so that the extended class gets an initialisation routine of its own, **sphere_init**.
 
 .. code-block:: Fortran
 
@@ -2418,7 +2645,7 @@ In the type definition a private member variable, **m_radius** and its access me
 
         class(sphere_particle_class) :: this
 
-        get_radius = this % m_radius
+        sphere_get_radius = this % m_radius
 
     end function sphere_get_radius
 
@@ -2444,4 +2671,61 @@ The format of a call to a inherited routine is:
 
     call [instance reference] \% [type definition name] \% [routine name]
 
+Polymorphism
+------------
 
+The classes in the previous sections are used through variables declared with **type**, which fixes at compile time exactly which type a variable holds. A variable declared with **class** instead holds a value of that type *or of any type extended from it*, and which one is decided while the program runs. This is polymorphism, and it is the reason for arranging types in a hierarchy in the first place.
+
+A dummy argument declared as **class(shape_class)** accepts a **circle_class** or a **rectangle_class** as well, and a call to one of its type-bound procedures runs the version belonging to the type the argument actually has.
+
+Sometimes the actual type is what the code needs to know. The **select type**-construct asks:
+
+.. code-block:: Fortran
+
+    select type (this)
+        type is (circle_class)
+            ! this is exactly a circle here
+        class is (shape_class)
+            ! this is a shape_class, or anything extended from it
+        class default
+            ! none of the above
+    end select
+
+Inside each block the variable is treated as having the type named in that block, so the components and procedures of that type can be used directly. **type is** matches one exact type, **class is** matches a type and everything extended from it, and **class default** catches whatever is left.
+
+The most general declaration is **class(\*)**, an unlimited polymorphic variable, which can hold a value of any type at all, intrinsic or derived. Nothing can be done with such a value until **select type** has established what it is, which makes the two features a pair.
+
+Abstract types and deferred bindings
+------------------------------------
+
+A type hierarchy usually has a type at the top that exists only to say what its descendants have in common. There is no such thing as a shape in general, only circles and rectangles, so it should not be possible to create one. Declaring the type **abstract** enforces that: an abstract type cannot be instantiated, only extended.
+
+An abstract type can also require that every type extending it provides a particular procedure, without providing one itself. Such a binding is declared **deferred**, and its interface is given in an **abstract interface** block.
+
+.. literalinclude:: ../../source/polymorphism/shapes.f90
+   :language: Fortran
+   :linenos:
+
+**shape_class** declares that every shape has an **area**-function with the interface given by **area_interface**, but does not say how to compute one. A type that extends **shape_class** and does not provide an **area** is rejected by the compiler. This is the compiler enforcing the design, rather than a comment asking a later reader to respect it.
+
+The **import**-statement inside the abstract interface makes the names of the host scope, here **shape_class** and **real64**, visible inside it. Without it an interface block sees nothing from around it.
+
+**shape_print** on the other hand is an ordinary binding with an implementation, so every shape inherits it and none of them has to write it. It uses **select type** to print the components that only the specific types have, and it calls ``this % area()``, which dispatches to whichever implementation the actual type provides.
+
+The **describe**-subroutine at the end of the module takes a **class(\*)** argument, so it accepts anything:
+
+.. literalinclude:: ../../source/polymorphism/main.f90
+   :language: Fortran
+   :linenos:
+
+The program produces the following output:
+
+::
+
+     circle     r =   2.00   area =  12.566
+     rectangle  w =   3.00   area =  12.000
+     an integer :          42
+     a string   : a string
+     some other type
+
+The last line is the complex value ``(1.0, 2.0)``, which none of the **type is** blocks match, so it falls through to **class default**. Every **select type**-construct that handles values from outside its own module should have a **class default** block for exactly this reason.

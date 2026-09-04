@@ -45,15 +45,16 @@ following code:
 The left side declares the return values from the function. This
 declaration must always be there even if the function does not return
 anything. Next, the sum function is declared. All exported functions
-have the same arguments. is a pointer to the module instance that the
-function belongs to. The second argument is a special Python object
-containing the arguments that the function is called with.
+have the same arguments. ``self`` is a pointer to the module instance
+that the function belongs to. The second argument is a special Python
+object containing the arguments that the function is called with.
 
 Next, the input arguments must be parsed. This is done using the
-C-function in the Python API. This function parses the input arguments,
-for the required parameters. If no match is found the function returns
-NULL, which will trigger an exception in the Python interpreter. If a
-match is found the function will assign values to provided C-variables.
+``PyArg_ParseTuple`` C-function in the Python API. This function parses
+the input arguments, for the required parameters. If no match is found
+the function returns NULL, which will trigger an exception in the Python
+interpreter. If a match is found the function will assign values to
+provided C-variables.
 Argument parsing for our sum function is shown in the following code:
 
 .. code-block:: C
@@ -68,8 +69,8 @@ Argument parsing for our sum function is shown in the following code:
    if (!PyArg_ParseTuple(args, "dd", &a, &b))
        return NULL;
 
-First, variables, and , are declared for storing the actual input
-arguments. The C-function takes the input parameter, args, and processes
+First, variables, ``a`` and ``b``, are declared for storing the actual
+input arguments. The C-function takes the input parameter, args, and processes
 this according to a signature string describing the required Python
 arguments. Our function sum takes two double values as input arguments,
 the signature string for this is ”dd”.
@@ -81,10 +82,11 @@ Now we have all input data, so now we do our actual computation in C:
    double c = a + b;
 
 To be able to use the computed value in Python it has to be converted to
-a PyObject. This can be done using the function . This function is
-similar to the C-function as it also uses the signature string to define
-what Python-datatypes to create. This is used in the last part of the
-C-function to return a Python-datatype.
+a PyObject. This can be done using the ``Py_BuildValue`` function. This
+function is similar to the ``PyArg_ParseTuple`` C-function as it also
+uses the signature string to define what Python-datatypes to create.
+This is used in the last part of the C-function to return a
+Python-datatype.
 
 .. code-block:: C
 
@@ -136,8 +138,8 @@ required is shown below:
        Py_InitModule3("cext", module_functions, "A minimal module.");
    }
 
-To build the extension module, the module in NumPy is used. The
-following is used to build the extension module:
+To build the extension module, the ``distutils`` module in NumPy is
+used. The following ``setup.py`` is used to build the extension module:
 
 .. code-block:: Python
 
@@ -183,7 +185,8 @@ compile and link Fortran code into the extension module. To illustrate
 this, the example in the previous section will be modified to call a
 fortran subroutine to perform the computation. To link a Fortran routine
 with a C, the calling convention in Fortran must be adapted to C. In the
-following example the , and is used to define a Fortran routine that
+following example the ``bind(C)``-attribute, the ``iso_c_binding``-module
+and the ``value``-attribute are used to define a Fortran routine that
 uses the C calling convention and C datatypes to make the linking
 easier:
 
@@ -230,7 +233,8 @@ The reason for the & operator is to pass the C-variable as a reference to
 the Fortran routine.
 
 To build the modified extension module, the Fortran routine must be
-compiled separately and then provided as a C-file to the script:
+compiled separately and then provided as a compiled object file to the
+``setup.py`` script:
 
 .. code-block:: Python
 
@@ -272,13 +276,13 @@ the following simple Fortran routine will be wrapped as a module:
 
    end subroutine simple
 
-To be able to use F2PY effectively it is important that the C-attribute
-is used on the subroutine arguments. If not specified, F2PY, will treat
+To be able to use F2PY effectively it is important that the ``intent``
+attribute is used on the subroutine arguments. If not specified, F2PY, will treat
 all subroutine parameters as input-variables and no output parameters
 can be passed back to the the calling Python routine.
 
-To create a Python module from the source code we execute the -command
-on the command line as show below:
+To create a Python module from the source code we execute the
+``f2py``-command on the command line as show below:
 
 ::
 
@@ -287,8 +291,8 @@ on the command line as show below:
    3n535b8krwsz88vl8bm0000gn/T/tmp5STblc/src.macosx-10.5-x86_64-2.7/fortranobject.o /var/folders/w6/1zqjp3n535b8krwsz88vl8bm0000gn/T/tmp5STblc/simple.o -L/opt/local/lib/gcc49/gcc/x86_64-apple-darwin14/4.9.1 -L/Users/lindemann/anaconda/lib -lgfortran -o ./fortmod.so
    Removing build directory /var/folders/w6/1zq...
 
-In the build directory there should now be a or a depending on the
-platform used.
+In the build directory there should now be a ``fortmod.so`` or a
+``fortmod.pyd`` depending on the platform used.
 
 The new module is loaded and used as shown in the following example:
 
@@ -299,8 +303,8 @@ The new module is loaded and used as shown in the following example:
    5.0
 
 F2PY will automatically generate built-in documentation in the module.
-To display this documentation the property is used, as shown in the
-following example:
+To display this documentation the ``__doc__`` property is used, as shown
+in the following example:
 
 ::
 
@@ -338,8 +342,9 @@ Fortran extension module. However, it is important to note that NumPy by
 default uses C ordered arrays. These will be automatically converted to
 Fortran ordered arrays. For smaller arrays the overhead is not so large,
 but for large arrays the overhead can be significant. To avoid the
-automatic conversion, NumPy arrays should be created with the option in
-the array constructor, as shown in the following example:
+automatic conversion, NumPy arrays should be created with the
+``order='F'`` option in the array constructor, as shown in the following
+example:
 
 .. code-block:: Python
 
@@ -369,8 +374,8 @@ shown below:
    end subroutine matrix_multiply
 
 Input variables define the sizes of the incoming matrices. We use the
-Fortran attributes and to tell F2PY what should be treated as an input
-variable or an output variable. Creating a Fortran extension module with
+Fortran attributes ``intent(in)`` and ``intent(out)`` to tell F2PY what
+should be treated as an input variable or an output variable. Creating a Fortran extension module with
 F2PY on the above routine produces the following corresponding Python
 routine (from the generated documentation):
 
@@ -405,8 +410,9 @@ is:
 
    c = matrix_multiply(a,b,[r,s,t])
 
-The Fortran output argument, is returned on the left side and the input
-arguments, are input parameters to the Fortran routine. Please note that
+The Fortran output argument, ``C``, is returned on the left side and the
+input arguments, ``A`` and ``B``, are input parameters to the Fortran
+routine. Please note that
 the size input parameters will be provided by the generated function and
 are not required when calling the routine from Python.
 
@@ -436,9 +442,9 @@ Output from the Python code is:
     [ 1200.  1200.  1200.  1200.  1200.  1200.]
     [ 1200.  1200.  1200.  1200.  1200.  1200.]]
 
-Output variables, , from Fortran will be automatically created. It is
-not possible to reference data in an already existing array as shown in
-the following example:
+Output variables, ``intent(out)``, from Fortran will be automatically
+created. It is not possible to reference data in an already existing
+array as shown in the following example:
 
 .. code-block:: Python
 
@@ -453,8 +459,8 @@ the following example:
    print "id of C after multiply =",id(C)
 
 In this example, an array is created before the call to our Fortran
-routine. The id or memory location is queried using the and displayed
-before and after the call. The output is:
+routine. The id or memory location is queried using the ``id``-function
+and displayed before and after the call. The output is:
 
 ::
 
@@ -470,8 +476,8 @@ Matrix mulitplication with modifiable output variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If the Fortran extension module should be able to modify the contents of
-the incoming arrays, the attribute must be used. This tells F2PY to
-generate code that handles this. Our modified matrix multiplication
+the incoming arrays, the ``intent(inout)`` attribute must be used. This
+tells F2PY to generate code that handles this. Our modified matrix multiplication
 subroutine then becomes:
 
 .. code-block:: Fortran
@@ -486,8 +492,8 @@ subroutine then becomes:
        C = matmul(A,B)
    end subroutine matrix_multiply2
 
-The only difference is the attribute on the array declaration. However,
-the generated Python routine is quite different:
+The only difference is the ``intent(inout)`` attribute on the array
+declaration. However, the generated Python routine is quite different:
 
 ::
 
@@ -530,8 +536,8 @@ following code shows how to use the modified Fortran extension:
 
    print C
 
-For this code to work it is now required to create the array, , before
-calling the Fortran extension. This is due to the fact that the memory
+For this code to work it is now required to create the array, ``C``,
+before calling the Fortran extension. This is due to the fact that the memory
 area for the array needs to exist before the call as the pointer to the
 array is passed directly to the Fortran code. The output of the Python
 code is shown below:

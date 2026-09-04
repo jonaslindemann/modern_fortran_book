@@ -7,7 +7,7 @@ program dynamic_fcodes
     real(8) :: A(9,9)
 
     A = 42.0_8
-	
+
     call write_array(A)
-	
+
 end program dynamic_fcodes

@@ -6,11 +6,11 @@ program optional_arguments
     call order_icecream(2, 1)
     call order_icecream(4, 4, 2)
     call order_icecream(4, topping=3)
-	
+
 contains
 
 subroutine order_icecream(number, flavor, topping)
-	
+
     integer :: number
     integer, optional :: flavor
     integer, optional :: topping
@@ -28,7 +28,7 @@ subroutine order_icecream(number, flavor, topping)
     else
             print *, 'No topping was given.'
     end if
-	
+
 end subroutine order_icecream
 
-end program optional_arguments 
+end program optional_arguments

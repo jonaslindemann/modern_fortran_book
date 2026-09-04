@@ -1,4 +1,7 @@
 module points
+
+    implicit none
+
     type point
         real :: x, y
     end type point
@@ -9,4 +12,3 @@ module points
         end function point_dist
     end interface
 end module points
-	

@@ -22,7 +22,7 @@ program pointers
     B(1,1) = 0 ! Dangerous!
 
     deallocate(A)
-	
+
 contains
 
 subroutine createArray(D)
@@ -30,7 +30,7 @@ subroutine createArray(D)
     integer, dimension(:,:), pointer :: D
 
     allocate(D(10,10))
-	
+
 end subroutine createArray
-	
+
 end program pointers

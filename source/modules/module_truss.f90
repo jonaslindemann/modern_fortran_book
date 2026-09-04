@@ -3,6 +3,8 @@ module truss
     use mf_datatypes
     use mf_utils
 
+    implicit none
+
     ! Public variable declarations
 
     ! Variables that are visible for other programs

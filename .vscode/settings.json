@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "e:\\Anaconda3\\python.exe"
+    "python.pythonPath": "e:\\Anaconda3\\python.exe",
+    "iis.configDir": ""
 }

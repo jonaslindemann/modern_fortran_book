@@ -31,10 +31,10 @@ A simple rule to compress a file, myfile.txt, is shown below:
    myfile.gz: myfile.txt
        cat myfile.txt | gzip > myfile.gz
 
-In this example a rule, , is created to compress the file. The rule
-depends on the file, . The action for compressing the file is shown in
-the second row. When you run the make command in the directory the
-following output is shown:
+In this example a rule, ``myfile.gz``, is created to compress the file.
+The rule depends on the file, ``myfile.txt``. The action for compressing
+the file is shown in the second row. When you run the make command in
+the directory the following output is shown:
 
 ::
 
@@ -45,16 +45,16 @@ following output is shown:
    $ ls
    Makefile    myfile.gz   myfile.txt
 
-If make is run again it will recognise that the has not been changed and
-not execute the action again.
+If make is run again it will recognise that the ``myfile.txt`` has not
+been changed and not execute the action again.
 
 ::
 
    $ make
    make: 'myfile.gz' is up to date.
 
-If the is changed, make will recognise this and run the specified action
-again.
+If the ``myfile.txt`` is changed, make will recognise this and run the
+specified action again.
 
 ::
 
@@ -87,10 +87,11 @@ is shown below:
    myprog.o: myprog.f90 
        gfortran -c myprog.f90
 
-In the above example the executable, , depends on the object file . The
-second rule defines how the object file is created from the source file,
-, which is also listed as a dependency for the rule. Running make on
-this makefile produces the following output:
+In the above example the executable, ``myprog``, depends on the object
+file ``myprog.o``. The second rule defines how the object file is
+created from the source file, ``myprog.f90``, which is also listed as a
+dependency for the rule. Running make on this makefile produces the
+following output:
 
 ::
 
@@ -101,16 +102,18 @@ this makefile produces the following output:
    gfortran myprog.o -o myprog
 
 Make first creates the object file as this is a dependency for the
-creating the executable. Next, the executable, , is created by using the
-gfortran compiler to create an executable from the object file. When
+creating the executable. Next, the executable, ``myprog``, is created by
+using the gfortran compiler to create an executable from the object
+file. When
 running make again, make will check for modifications and only execute
 actions if necessary.
 
 Using make on a single source file is perhaps not the most useful thing.
 However, when compiling multiple files using make becomes more useful.
 To extend our above example to multiple source files we add the needed
-dependencies to the rule for building the executable, . We also need an
-additional rule for building our additional sourcefile, .
+dependencies to the rule for building the executable, ``myprog``. We
+also need an additional rule for building our additional sourcefile,
+``mymodule.f90``.
 
 .. code-block:: Make
 
@@ -123,7 +126,7 @@ additional rule for building our additional sourcefile, .
    mymodule.o: mymodule.f90
        gfortran -c mymodule.f90
 
-The interesting happens when the file is updated:
+The interesting happens when the ``mymodule.f90`` file is updated:
 
 ::
 
@@ -132,9 +135,10 @@ The interesting happens when the file is updated:
    gfortran -c mymodule.f90
    gfortran myprog.o mymodule.o -o myprog
 
-Make detects the change in the file and only compiles this file. As the
-was not updated the existing object file can be reused. This is why it
-is a good idea to use make in large projects. Modifying a single source
+Make detects the change in the ``mymodule.f90`` file and only compiles
+this file. As the ``myprog.f90`` was not updated the existing object
+file can be reused. This is why it is a good idea to use make in large
+projects. Modifying a single source
 file in a large application will only rebuild what is needed to satisfy
 the dependencies.
 
@@ -142,13 +146,14 @@ Fortran 90 Module dependencies
 ------------------------------
 
 One problem compiling Fortran 90 code and modules is module
-dependencies. When compiling a module the compiler creates -files which
-can be compared to automatically generated header files in C. When
+dependencies. When compiling a module the compiler creates ``.mod``-files
+which can be compared to automatically generated header files in C. When
 compiling a module which uses another module the used module must be
-compiled first, so that the -file is available for the compiler.
+compiled first, so that the ``.mod``-file is available for the compiler.
 
-In the following exaple we have a module, , which uses . If we update
-the previous makefile we get the following makefile:
+In the following exaple we have a program, ``module_main.f90``, which
+uses the module ``truss`` in ``module_truss.f90``. If we update the
+previous makefile we get the following makefile:
 
 .. code-block:: Make
 
@@ -173,10 +178,12 @@ Running make produces the following output:
    Fatal Error: Can't open module file 'truss.mod' for reading at (1): No such file or directory
    make: *** [module_main.o] Error 1
 
-The compiler complains that it is missing the -file, , to be able to
-compile main module. To solve this an additional dependency, , is added
-to the build rule. This means that to build the file the file must first
-be build. The updated make file is shown below:
+The compiler complains that it is missing the ``.mod``-file,
+``truss.mod``, to be able to compile main module. To solve this an
+additional dependency, ``module_truss.o``, is added to the build rule.
+This means that to build the ``module_main.o`` file the
+``module_truss.o`` file must first be build. The updated make file is
+shown below:
 
 .. code-block:: Make
 
@@ -199,8 +206,9 @@ Running make again will produce the desired results:
    gfortran module_main.o module_truss.o -o myprog
 
 From the above output it can be seen that make figures out the
-dependencies and builds the first which produces the needed which is
-needed when compiling the file.
+dependencies and builds ``module_truss.f90`` first which produces the
+needed ``truss.mod`` which is needed when compiling the
+``module_main.f90`` file.
 
 Using variables in make
 -----------------------
@@ -208,13 +216,14 @@ Using variables in make
 To specify explicit commands in the make file rules can make the
 makefiles difficult to maintain. Too solve this, make supports variables
 in the same way as in normal bash-scripts. To use the value of a
-variable in the makefile, the name of the variable is enclosed in . In
-the following example, the variable, , is used to specify which compiler
-that is going to be used. The compiler flags are specified in the
-variable and the name of the application binary is specified in the
-variable. In this example a special clean rule has been added to clean
-all build files generated when compiling the application. In the rule
-the is used to make the rule more generic.
+variable in the makefile, the name of the variable is enclosed in
+``$( )``. In the following example, the variable, ``FC``, is used to
+specify which compiler that is going to be used. The compiler flags are
+specified in the ``FFLAGS`` variable and the name of the application
+binary is specified in the ``EXECUTABLE`` variable. In this example a
+special clean rule has been added to clean all build files generated
+when compiling the application. In the rule the ``$(EXECUTABLE)``
+variable is used to make the rule more generic.
 
 .. code-block:: Make
 
@@ -270,24 +279,26 @@ application can be created
 
    $(EXECUTABLE): myprog.o mymodule.o
        $(FC) $^ -o $@
-   ...
+   # ...
 
-Here, ``$^``, is used to list all prerequisites for this build, . The
-``$@``, denotes the current target as the output file for the compiler,
-in this case or .
+Here, ``$^``, is used to list all prerequisites for this build,
+``myprog.o`` and ``mymodule.o``. The ``$@``, denotes the current target
+as the output file for the compiler, in this case ``$(EXECUTABLE)`` or
+``myprog``.
 
 The rules for compiling source code can also be updated in a similar
 way:
 
 .. code-block:: Make
 
-   ...
+   # ...
    myprog.o: myprog.f90 
        $(FC) $(FFLAGS) $< -o $@
-   ...
+   # ...
 
-Here the ``$<`` variable denotes the first prerequisite, . The target
-macro, ``$@``, is also used to define the outputfile for the compiler.
+Here the ``$<`` variable denotes the first prerequisite, ``myprog.f90``.
+The target macro, ``$@``, is also used to define the outputfile for the
+compiler.
 
 There are several more internal macros that can be used in makefiles.
 For more information please see the GNU Make documenation [gnumake12]_.
@@ -298,8 +309,8 @@ Suffix rules
 If a project consists of a larger number of source files, a large number
 of rules must be written. Make, solves this by implementing so called
 explicit rules. These rules can be regarded as a recipy for how to go
-from one extension, to another . A explicit rule for compiling a Fortran
-source file to an object file then becomes:
+from one extension, ``.f90``, to another, ``.o``. A explicit rule for
+compiling a Fortran source file to an object file then becomes:
 
 .. code-block:: Make
 
@@ -307,7 +318,7 @@ source file to an object file then becomes:
    FFLAGS=-c
    EXECUTABLE=myprog
 
-   ...
+   # ...
 
    .f90.o:
        $(FC) $(FFLAGS) $< -o $@
@@ -315,8 +326,9 @@ source file to an object file then becomes:
 This rule eliminates all the compilation rules used in the previous
 sections and makes the makefile more compact. To make the explicit rules
 work for compiling Fortran code, make needs to now which suffixes are
-used for Fortran source code. This is done with the special rule . The
-following example shows the completed makefile with the suffix rule:
+used for Fortran source code. This is done with the special rule
+``.SUFFIXES``. The following example shows the completed makefile with
+the suffix rule:
 
 .. code-block:: Make
 
@@ -351,8 +363,9 @@ Please note the ``:=`` assignment operator used in conjunction with make
 function calls.
 
 When we have a list of source files, a list of object-files can easily
-be created by using the function. This uses patterns to substitute the
-file suffixes from .f90 to .o. The assignment statement then becomes:
+be created by using the ``$(patsubst ...)`` function. This uses patterns
+to substitute the file suffixes from .f90 to .o. The assignment
+statement then becomes:
 
 .. code-block:: Make
 
@@ -410,7 +423,8 @@ The completed makefile with wildcards and pattern rules is shown below:
    clean:
        rm -rf *.o *.mod $(EXECUTABLE)
 
-Please note that when using pattern rules the is not needed.
+Please note that when using pattern rules the ``.SUFFIXES`` rule is not
+needed.
 
 Even if the described makefile automatically can compile all source
 files, dependencies between Fortran 90 modules are not handled. The
@@ -600,9 +614,10 @@ Building debug and release versions
 
 By default CMake generates build files for compiling debug versions of
 an applicaiton. That is using no optimisation and with debug symbols.
-Controlling the build type can be done by assigning the variable to
-either or when executing CMake. Variables can be set on the command line
-by using the switch -D as shown in the following example:
+Controlling the build type can be done by assigning the
+``CMAKE_BUILD_TYPE`` variable to either ``Debug`` or ``Release`` when
+executing CMake. Variables can be set on the command line by using the
+switch ``-D`` as shown in the following example:
 
 ::
 
@@ -615,8 +630,9 @@ Adding library dependencies
 ---------------------------
 
 In the previous examples the binaries have been built without any
-library dependencies. To add link dependencies, the can be used. To add
-the libraries, and as dependencies of the executable, the CMakeList.txt
+library dependencies. To add link dependencies, the
+``target_link_libraries``-function can be used. To add the libraries,
+``blas`` and ``m``, as dependencies of the executable, the CMakeList.txt
 becomes:
 
 .. code-block:: CMake
@@ -702,8 +718,8 @@ enclosed by curly brackets as shown in the following example:
    set(MYVAR "Hello, world!")
    message(${MYVAR})
 
-This will print the contents of the variable, . If not enclosed it will
-print the name of the variable.
+This will print the contents of the variable, ``MYVAR``. If not enclosed
+it will print the name of the variable.
 
 Variables can also be lists of values which can be iterated over.
 Creating a list is also done using the `set`-function, as shown in this
@@ -714,8 +730,9 @@ example:
    set(MYLIST a b c)
    message(${MYLIST})
 
-Here, , containing 3 strings. The -function will concatenate the items
-in the list and the resulting output of running cmake will be:
+Here, the list ``MYLIST`` is created, containing 3 strings. The
+``message``-function will concatenate the items in the list and the
+resulting output of running cmake will be:
 
 ::
 
@@ -726,7 +743,7 @@ in the list and the resulting output of running cmake will be:
    -- Build files have been written to: ...
 
 Using a list variable it is also possible to do an iteration using a
--statement, which the following example shows:
+``foreach``-statement, which the following example shows:
 
 ::
 
@@ -753,21 +770,23 @@ Controlling optimisation options
 Optimisation options can differ between compilers. To control the
 optimisation options in CMake, conditional builds using if-statements
 can be used. First, the used compiler needs to be queried. The path to
-the actual compiler is stored in the . To create an if-statement on the
-compiler the compiler command must be extracted from the compiler path.
-This can be accomplished using the
+the actual compiler is stored in the ``CMAKE_Fortran_COMPILER``
+variable. To create an if-statement on the compiler the compiler command
+must be extracted from the compiler path. This can be accomplished using
+the ``get_filename_component``-function:
 
 .. code-block:: CMake
 
    get_filename_component (Fortran_COMPILER_NAME ${CMAKE_Fortran_COMPILER} NAME)
 
 This command extracts the filename component of the path and stores it
-in the variable . Next, an if-statement has to implemented that queries
-for different compilers. A string comparison can be done using the
-operator in CMake. Compilation flags for CMake are stored in for release
-mode flags and for debug flags. An example of this kind of conditional
-compilation statement is shown below (from
-:raw-latex:`\cite{cmakecond12}`):
+in the variable ``Fortran_COMPILER_NAME``. Next, an if-statement has to
+implemented that queries for different compilers. A string comparison
+can be done using the ``STREQUAL`` operator in CMake. Compilation flags
+for CMake are stored in ``CMAKE_Fortran_FLAGS_RELEASE`` for release mode
+flags and ``CMAKE_Fortran_FLAGS_DEBUG`` for debug flags. An example of
+this kind of conditional compilation statement is shown below (from
+[cmakecond12]_):
 
 .. code-block:: CMake
 
@@ -791,8 +810,8 @@ Generating project files for development environments
 
 CMake is not limited to generating makefiles, it can also generate
 project files for a number of graphical development environments.
-Supported generators in CMake can be listed by running the -command
-without parameters. The following list is produced on a Mac OS X based
+Supported generators in CMake can be listed by running the
+``cmake``-command without parameters. The following list is produced on a Mac OS X based
 machine:
 
 Generators
@@ -810,9 +829,9 @@ When running on a Windows machine, generators for Visual Studio and
 other development environments for that platform will be available as
 well.
 
-To generate build files for a different generator the -switch is used.
-In the following example build files for the Eclipse-environment are
-generated.
+To generate build files for a different generator the ``-G``-switch is
+used. In the following example build files for the Eclipse-environment
+are generated.
 
 ::
 
@@ -843,3 +862,266 @@ Please note that in the above example we are using a build directory not
 located in the source tree. This is the recommended way for an Eclipse
 based project.
 
+fpm - the Fortran Package Manager
+=================================
+
+Make and CMake are general build tools that happen to know about Fortran. **fpm**, the Fortran Package Manager, is the opposite: it knows only about Fortran, and because of that it needs almost no configuration. It works out the compilation order from the **use**-statements in the source, rebuilds only what a change affects, runs the project's tests, and fetches the libraries the project depends on.
+
+The chapter :doc:`chapter_getting_started` shows how to create and run a first project with **fpm new**. This section covers the manifest and the parts that matter once a project grows.
+
+The project layout
+------------------
+
+fpm finds source files by their location, so the directory names are part of the interface:
+
+::
+
+   myproject/
+   |-- fpm.toml
+   |-- app/          main programs, one executable per program
+   |-- src/          modules, compiled into the project library
+   |-- test/         test programs, run by fpm test
+   |-- example/      example programs, run by fpm run --example
+   `-- build/        everything fpm generates, safe to delete
+
+Files added to these directories are picked up without any change to the manifest. A module in ``src`` that is used by a program in ``app`` is compiled first, without a rule being written anywhere.
+
+The manifest
+------------
+
+``fpm.toml`` is written in TOML and is short for most projects:
+
+.. code-block:: toml
+
+   name = "myproject"
+   version = "0.1.0"
+   license = "MIT"
+   author = "Jane Doe"
+   maintainer = "jane.doe@example.com"
+
+   [build]
+   auto-executables = true
+   auto-tests = true
+
+   [install]
+   library = false
+
+   [fortran]
+   implicit-typing = false
+   implicit-external = false
+   source-form = "free"
+
+The ``[fortran]``-section is worth setting deliberately. With ``implicit-typing = false`` fpm compiles the whole project as if every code unit contained an **implicit none**, which is the rule the first chapter recommends, applied to the project rather than one file at a time.
+
+Targets can also be declared explicitly, which is needed when a program's file name and the executable name differ, or when a test needs a name of its own:
+
+.. code-block:: toml
+
+   [[executable]]
+   name = "solver"
+   source-dir = "app"
+   main = "solver_main.f90"
+
+   [[test]]
+   name = "unit-tests"
+   source-dir = "test"
+   main = "check.f90"
+
+Dependencies
+------------
+
+A dependency is one entry in the manifest, and fpm downloads and builds it on the next build. Nothing has to be installed on the machine first.
+
+.. code-block:: toml
+
+   [dependencies]
+   stdlib = "*"
+   toml-f = { git = "https://github.com/toml-f/toml-f" }
+   test-drive = { git = "https://github.com/fortran-lang/test-drive", tag = "v0.4.0" }
+   mylib = { path = "../mylib" }
+
+The four forms are, in order: a package from the central registry, a git repository at its default branch, a git repository pinned to a tag, and a directory on the same machine, which is how a project under development is used before it is published. Pinning to a tag or a commit is worth doing for anything that a build has to reproduce later.
+
+Dependencies that only the tests need go in a separate section, so that they are not built for an ordinary build:
+
+.. code-block:: toml
+
+   [dev-dependencies]
+   test-drive = { git = "https://github.com/fortran-lang/test-drive" }
+
+Building, testing and installing
+--------------------------------
+
+::
+
+   $ fpm build                       # compile what needs compiling
+   $ fpm run                         # build, then run the program in app
+   $ fpm run --target solver -- -v   # a named program, with its own arguments
+   $ fpm test                        # build and run everything in test
+   $ fpm install --prefix ~/.local   # copy the executables somewhere permanent
+
+By default fpm builds without optimisation, which is what is wanted while code is being written. For a build meant to be run in earnest::
+
+   $ fpm build --profile release
+
+Individual compiler options are passed with ``--flag``, which replaces the profile's options rather than adding to them::
+
+   $ fpm build --flag "-Wall -std=f2018 -fcheck=all -g"
+
+Which tool to use
+-----------------
+
+fpm is the shortest path from nothing to a built and tested project, and for a new project written entirely in Fortran there is little reason to use anything else. Its limits are the other side of the same coin: a project that mixes Fortran with C or C++, that has to produce a library other build systems consume, or that depends on how a particular platform is configured, is better served by CMake. Make remains worth understanding because both of the others generate makefiles, and because a build that goes wrong is usually debugged one rule at a time.
+
+The Fortran standard library
+============================
+
+Fortran's intrinsic procedures cover arithmetic and arrays and very little else. There is no sort, no string splitting, no reading a table of numbers from a file, no random number generator worth the name. Every project has therefore had to write the same few hundred lines, and every project has written them slightly differently.
+
+**stdlib**, the Fortran standard library, is the community's answer to that. It is a single library of the routines that keep being rewritten, developed at `github.com/fortran-lang/stdlib <https://github.com/fortran-lang/stdlib>`_, and parts of it are proposals for a future Fortran standard.
+
+The easiest way to use it is as an fpm dependency:
+
+.. code-block:: toml
+
+   [dependencies]
+   stdlib = "*"
+
+It can also be installed with conda, ``conda install -c conda-forge fortran-stdlib``, and built with CMake for projects that use it.
+
+The library is organised as a set of modules, each with a ``stdlib_`` prefix:
+
+.. csv-table::
+    :header: "Module", "Contents"
+
+    "stdlib_kinds", "sp, dp, qp, int8 ... int64, the kind names used throughout the library"
+    "stdlib_math", "linspace, logspace, arange, clip, gcd"
+    "stdlib_stats", "mean, var, moment, median, corr, cov"
+    "stdlib_linalg", "eye, diag, trace, det, inv, solve, lstsq, eigvals"
+    "stdlib_sorting", "sort, ord_sort, sort_index"
+    "stdlib_strings", "to_lower, to_upper, replace_all, starts_with, slice"
+    "stdlib_str2num", "to_num, converting a string to a number"
+    "stdlib_io", "loadtxt, savetxt, open, getline"
+    "stdlib_error", "check, error_stop"
+    "stdlib_logger", "a logger with severity levels, writing to a file or the console"
+    "stdlib_random", "dist_rand, and distributions in stdlib_stats_distribution_*"
+
+A program that reads a table of numbers, sorts a column and prints some statistics is a few lines rather than a few hundred:
+
+.. code-block:: Fortran
+
+    program summary
+
+        use stdlib_kinds, only: dp
+        use stdlib_io, only: loadtxt
+        use stdlib_stats, only: mean, var
+        use stdlib_sorting, only: sort
+
+        implicit none
+
+        real(dp), allocatable :: table(:,:), column(:)
+
+        call loadtxt('measurements.txt', table)
+
+        column = table(:,1)
+        call sort(column)
+
+        write(*,*) 'n        =', size(column)
+        write(*,*) 'median   =', column(size(column)/2 + 1)
+        write(*,*) 'mean     =', mean(column)
+        write(*,*) 'variance =', var(column)
+
+    end program summary
+
+The library is under active development, and its own documentation at `stdlib.fortran-lang.org <https://stdlib.fortran-lang.org>`_ is the place to check what a routine's interface currently is. Not everything in it is stable yet, which is a reason to pin the version a project depends on rather than tracking the default branch.
+
+Testing Fortran code
+====================
+
+Numerical code is unusually easy to get subtly wrong and unusually hard to eyeball. A routine that returns a plausible number for a plausible input can be wrong by a factor of two in a corner that nobody looks at, and the wrongness only surfaces when someone tries to publish the results. A test is what turns "it seemed to work" into something that is checked again every time the code is touched.
+
+A test is nothing more than a program that computes something whose answer is known and stops with a nonzero exit status if the answer is wrong. The **error stop**-statement from the language chapter is all that is strictly needed.
+
+The module below is the thing being tested:
+
+.. literalinclude:: ../../source/testing/stats.f90
+   :language: Fortran
+   :linenos:
+
+and this is a test program for it:
+
+.. literalinclude:: ../../source/testing/check_stats.f90
+   :language: Fortran
+   :linenos:
+
+::
+
+   $ gfortran stats.f90 check_stats.f90 -o check_stats
+   $ ./check_stats
+    ok: mean of the sample
+    ok: variance of the sample
+    ok: mean of one element
+    all tests passed
+   $ echo $?
+   0
+
+Two details in the test are worth copying. Floating point results are compared against a tolerance rather than with ``==``, because two calculations that are mathematically equal are rarely bit-identical. And the failure message names which check failed, since a test that only says "failed" sends the reader back to the source to find out what it was testing.
+
+Placing the file in the ``test`` directory of an fpm project is enough for fpm to build and run it::
+
+   $ fpm test
+   ok: mean of the sample
+   ok: variance of the sample
+   ok: mean of one element
+   all tests passed
+
+**fpm test** reports a failure if any test program exits with a nonzero status, which is exactly what **error stop** produces.
+
+Test frameworks
+---------------
+
+Hand-written checks stop scaling at a few dozen tests, because a program that stops at the first failure only reports one problem per run. A test framework collects the tests, runs all of them, and reports the failures together.
+
+`test-drive <https://github.com/fortran-lang/test-drive>`_ is the one most commonly used with fpm, and is a dev-dependency of many fortran-lang projects:
+
+.. code-block:: toml
+
+   [dev-dependencies]
+   test-drive = { git = "https://github.com/fortran-lang/test-drive" }
+
+Tests are written as subroutines that are collected into a suite, and the framework provides a **check** routine for the assertions:
+
+.. code-block:: Fortran
+
+    subroutine test_mean(error)
+
+        use testdrive, only: error_type, check
+
+        type(error_type), allocatable, intent(out) :: error
+
+        call check(error, mean([2.0_dp, 4.0_dp, 6.0_dp]), 4.0_dp, thr=1.0e-12_dp)
+
+    end subroutine test_mean
+
+Other frameworks exist — **pFUnit**, which is built around MPI-parallel codes, and **veggies** are the two seen most often — but for a project already using fpm, test-drive involves the least machinery.
+
+Running the tests automatically
+-------------------------------
+
+Tests that are only run when someone remembers to run them stop being run. Both GitHub and GitLab can build a project and run its tests on every push, and for an fpm project the configuration is short. A GitHub Actions workflow needs a file in ``.github/workflows``:
+
+.. code-block:: yaml
+
+   name: tests
+
+   on: [push, pull_request]
+
+   jobs:
+     test:
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v4
+         - uses: fortran-lang/setup-fpm@v5
+         - run: fpm test --flag "-Wall -std=f2018 -fcheck=all"
+
+The runtime checks are worth enabling here even though they slow the tests down. A test suite is exactly where an out of bounds array access should be caught, and it is the one place where the cost does not matter.

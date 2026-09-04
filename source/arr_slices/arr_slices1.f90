@@ -3,6 +3,8 @@ program arr_slices1
     use mf_datatypes
     use mf_utils
 
+    implicit none
+
     real(dp) :: A(10,10)
     real(dp) :: v(10)
 

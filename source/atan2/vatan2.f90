@@ -1,14 +1,16 @@
 subroutine vatan2(y,x,angle)
 
-	!dec\$attributes dllexport, stdcall :: vatan2
-	!dec\$attributes reference :: angle
-	!dec\$attributes value :: x
-	!dec\$attributes value :: y
+    implicit none
 
-	real(8) :: y, x, angle
+    !dec$attributes dllexport, stdcall :: vatan2
+    !dec$attributes reference :: angle
+    !dec$attributes value :: x
+    !dec$attributes value :: y
 
-	angle = atan2(y,x)
-	
-	return
+    real(8) :: y, x, angle
+
+    angle = atan2(y,x)
+
+    return
 
 end subroutine vatan2

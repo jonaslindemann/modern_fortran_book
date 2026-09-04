@@ -13,11 +13,11 @@ program allocatable_dummy
 contains
 
 subroutine createArray(A)
-	
+
     real, allocatable, intent(out) :: A(:,:)
 
     allocate(A(20,20))
-	
+
 end subroutine createArray
-	
+
 end program allocatable_dummy

@@ -1,0 +1,61 @@
+name: examples
+
+# Keeps the book's Fortran examples matching the advice the book gives:
+# no tab characters, `implicit none` in every program unit, and everything
+# compiles under a standard-conforming compiler with warnings turned on.
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'source/**'
+      - 'tools/**'
+      - '.github/workflows/examples.yml'
+  pull_request:
+    paths:
+      - 'source/**'
+      - 'tools/**'
+      - '.github/workflows/examples.yml'
+  workflow_dispatch:
+
+jobs:
+  style:
+    name: Style (tabs, implicit none, encoding)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python tools/check_style.py source
+
+  compile:
+    name: Compile all examples
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install gfortran
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gfortran
+      - name: Syntax-check every example
+        run: python tools/check_compile.py source
+
+  build:
+    name: CMake build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install gfortran
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gfortran
+      - name: Configure
+        run: >
+          cmake -S source -B build
+          -DCMAKE_Fortran_FLAGS="-std=f2018 -fall-intrinsics -Wall -pedantic -fimplicit-none"
+      - name: Build
+        run: cmake --build build

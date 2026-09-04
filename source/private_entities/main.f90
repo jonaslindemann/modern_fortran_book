@@ -5,5 +5,5 @@ program private_entities
     implicit none
 
     call publicfunc
-	
+
 end program private_entities

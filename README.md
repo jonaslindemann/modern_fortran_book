@@ -2,7 +2,7 @@
 
 Authors: Jonas Lindemann and Ola Dahlblom
 
-This book is an introduction in programming with Fortran 95/2003/2008 in science and technology. The book also covers methods for integrating Fortran code with other programming languages both dynamic (Python) and compiled languages (C++). An introduction in using modern development enrvironments such as QtCreator/Eclipse/Photran, for debugging and development is also given.
+This book is an introduction to programming with Fortran 95/2003/2008/2018 in science and technology. It covers the language itself, from a first program to object-oriented programming, and parallel programming with do concurrent, OpenMP and coarrays. It also covers methods for calling Fortran from Python and for combining it with C, building larger projects with Make, CMake and fpm, and working in modern development environments such as Visual Studio Code and Qt Creator.
 
 You can find the book in a more readable form at Read The Docs at the following link:
 

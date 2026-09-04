@@ -1,5 +1,7 @@
 submodule (points) points_a
 
+    implicit none
+
 contains
 
 real module function point_dist(a,b)

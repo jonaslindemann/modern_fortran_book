@@ -1,6 +1,6 @@
 
 ! Exported fortran subroutine vatan2.
-! 
+!
 ! Generated 2001-03-05 20:10:36
 !  by Fortran interface wizard 1.0.1
 
@@ -8,11 +8,11 @@ subroutine vatan2(y,x,angle)
 
     ! ---- Subroutine export declarations.
 
-    !dec\$attributes dllexport, stdcall :: vatan2
+    !dec$attributes dllexport, stdcall :: vatan2
 
-    !dec\$attributes value :: y
-    !dec\$attributes value :: x
-    !dec\$attributes reference :: angle
+    !dec$attributes value :: y
+    !dec$attributes value :: x
+    !dec$attributes reference :: angle
 
     ! ---- Declaration of exported variables.
 

@@ -20,11 +20,13 @@ if(USE_F2PY)
         allocatable_dummy allocatable_function dynamic_fcodes pointers overloading
         case formatting modules namelist_io operator_overloading optional_arguments
         private_entities procedures_as_arguments strings submodules
-        subroutines sample1 sample2 zero_size logic functions fea_code lapack f2py )
+        subroutines sample1 sample2 zero_size logic functions fea_code lapack getting_started
+        iso_env error_stop do_concurrent move_alloc pure_elemental polymorphism openmp coarrays testing f2py )
 else()
     subdirs(arr_slices arr_expressions expressions variables loops unformatted_io error_handling array_features oo_programming
         allocatable_dummy allocatable_function dynamic_fcodes pointers overloading
         case formatting modules namelist_io operator_overloading optional_arguments
         private_entities procedures_as_arguments strings submodules
-        subroutines sample1 sample2 zero_size logic functions lapack fea_code)
+        subroutines sample1 sample2 zero_size logic functions lapack fea_code getting_started
+        iso_env error_stop do_concurrent move_alloc pure_elemental polymorphism openmp coarrays testing)
 endif()

@@ -1,6 +1,8 @@
 module mymodule
 
-contains 
+    implicit none
+
+contains
 
 subroutine test
 
