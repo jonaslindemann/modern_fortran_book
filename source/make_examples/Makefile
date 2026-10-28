@@ -15,5 +15,4 @@ clean: $(CLEANDIRS)
 $(CLEANDIRS):
 	$(MAKE) -C $(@:clean-%=%) clean
 	
-.PHONY: subdirs $(CLEANDIRS)	
-.PHONY: clean
+.PHONY: all clean $(BUILDDIRS) $(CLEANDIRS)

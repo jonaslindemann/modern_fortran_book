@@ -7,3 +7,17 @@ source/bouncing_particles_oo
 *.mod
 docs/.vscode/settings.json
 IMPROVEMENTS.md
+
+# Build output from the examples
+build/
+build-*/
+*.o
+*.obj
+*.a
+*.pyd
+*.so
+source/make_examples/**/myprog
+source/make_examples/zip/myfile.gz
+source/bin/
+/source/cmake_examples/install/build
+*.o

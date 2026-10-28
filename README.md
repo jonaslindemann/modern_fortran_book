@@ -12,9 +12,10 @@ You can also find all the examples in the book in the **source** directory of th
 
     $ git clone https://github.com/jonaslindemann/modern_fortran_book.git
     $ cd modern_fortran_book/source
-    $ mkdir build
-    $ cd build
-    $ cmake ..
-    $ make
-  
-It will require a fortran compiler installed in the search path.
+    $ cmake --preset release
+    $ cmake --build --preset release
+    $ ctest --preset release
+
+This requires CMake 3.20 or newer, Ninja and a Fortran compiler in the search path. Without Ninja, configure with a Makefile generator instead, for example `cmake -B build -G "Unix Makefiles"` (`"MinGW Makefiles"` on Windows) followed by `cmake --build build`.
+
+The LAPACK and f2py examples are off by default. Enable them with `-DUSE_LAPACK=ON` (needs BLAS and LAPACK) or `-DUSE_F2PY=ON` (needs Python with numpy).

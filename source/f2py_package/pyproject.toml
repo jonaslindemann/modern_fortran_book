@@ -1,0 +1,10 @@
+[build-system]
+build-backend = "mesonpy"
+requires = ["meson-python", "numpy>=2.0"]
+
+[project]
+name = "fmatrix"
+version = "0.1.0"
+description = "Fortran matrix routines wrapped with f2py"
+requires-python = ">=3.10"
+dependencies = ["numpy>=2.0"]

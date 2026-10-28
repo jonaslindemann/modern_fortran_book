@@ -2277,9 +2277,9 @@ System functions
 C Interoperability
 ------------------
 
-.. literalinclude:: ../../source/c_interop/main.f90
-   :language: Fortran
-   :linenos:
+The intrinsic module **iso_c_binding** and the **bind(C)** attribute make it
+possible to call C from Fortran and Fortran from C in a portable way. They are
+described, together with calling Fortran from Python, in :ref:`c-interop`.
 
 Access to computing environment
 -------------------------------

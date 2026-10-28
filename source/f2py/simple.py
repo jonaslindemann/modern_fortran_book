@@ -1,16 +1,7 @@
-import sys
-sys.path.append("./build") 
+import fortmod
 
-from numpy import *
-from fortmod import *
+print(fortmod.simple.__doc__)
 
-print "-------------------------------------"
-print simple.__doc__
-print "-------------------------------------"
-print
+c = fortmod.simple(2.0, 3.0)
 
-a = 2
-b = 3
-c = simple(a, b)
-
-print "c =", c
+print("c =", c)

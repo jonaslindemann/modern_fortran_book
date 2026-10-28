@@ -1,3 +1,1 @@
-add_executable(allocatable_dummu main.f90)
-
-
+add_executable(allocatable_dummy main.f90)

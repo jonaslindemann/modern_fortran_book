@@ -1,4 +1,5 @@
 {
     "python.pythonPath": "e:\\Anaconda3\\python.exe",
-    "iis.configDir": ""
+    "iis.configDir": "",
+    "cmake.sourceDirectory": "C:/Users/Jonas Lindemann/Development/modern_fortran_book/source"
 }

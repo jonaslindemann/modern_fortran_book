@@ -1,8 +1,17 @@
+find_package(Python COMPONENTS Interpreter REQUIRED)
+
+# f2py's meson backend cannot handle absolute source paths containing spaces,
+# so the sources are copied next to the build and passed by name.
+
+set(F2PY_SOURCES simple.f90 matrix.f90)
+
+foreach(src IN LISTS F2PY_SOURCES)
+    configure_file(${src} ${CMAKE_CURRENT_BINARY_DIR}/${src} COPYONLY)
+endforeach()
+
 add_custom_target(
     fortmod ALL
-    DEPENDS ${PROJECT_SOURCE_DIR}/f2py/simple.f90 ${PROJECT_SOURCE_DIR}/f2py/arr1.f90 ${PROJECT_SOURCE_DIR}/f2py/arr2.f90
-    COMMAND /anaconda/bin/f2py -m fortmod -c ${PROJECT_SOURCE_DIR}/f2py/simple.f90 ${PROJECT_SOURCE_DIR}/f2py/arr1.f90 ${PROJECT_SOURCE_DIR}/f2py/arr2.f90
+    COMMAND ${Python_EXECUTABLE} -m numpy.f2py -c -m fortmod ${F2PY_SOURCES}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    VERBATIM
 )
-
-# DEPENDS ${PROJECT_SOURCE_DIR}/simple.f90 ${PROJECT_SOURCE_DIR}/simple.f90 ${PROJECT_SOURCE_DIR}/arr1.f90 ${PROJECT_SOURCE_DIR}/arr2.f90
-

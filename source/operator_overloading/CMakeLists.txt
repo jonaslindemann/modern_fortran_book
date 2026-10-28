@@ -1,1 +1,2 @@
-add_executable(operator_overloading main.f90 vector_operations.f90 ../mf_lib/mf_datatypes.f90 ../mf_lib/mf_utils.f90)
+add_executable(operator_overloading main.f90 vector_operations.f90)
+target_link_libraries(operator_overloading PRIVATE mf_lib)

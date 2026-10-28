@@ -507,19 +507,22 @@ Compiling code with cmake
 To use CMake, a CMakeLists.txt file has to be created. This is a normal
 text files with special CMake statements in it. Usually this files
 starts with a `cmake_minimum_required`. This prevents the CMakeLists.txt file to be used by a
-too old cmake. The first actual statement is usually `project`-function defining
-the name of the project.
+too old cmake. Recent versions of CMake refuse to process files that ask for
+a version older than 3.5, so a version such as 3.20 is a good choice. The first
+actual statement is usually `project`-function defining the name of the project.
 
 .. code-block:: CMake
 
-   cmake_minimum_required(VERSION 2.6)
-   project(simple)
+   cmake_minimum_required(VERSION 3.20)
+   project(simple LANGUAGES Fortran)
 
 The name of the project is not the same as the executable but is used
 when generating project files for development environments.
 
-CMake by default does not support Fortran, so a special function,
-`enable_language`-function is used to enable this:
+Without the ``LANGUAGES`` argument, CMake assumes a C and C++ project and
+will look for those compilers. ``LANGUAGES Fortran`` tells it that only a
+Fortran compiler is needed. In older CMake files the same thing is often done
+with the `enable_language`-function:
 
 .. code-block:: CMake
 
@@ -536,9 +539,8 @@ The completed CMakeLists.txt file then becomes:
 
 .. code-block:: CMake
 
-   cmake_minimum_required(VERSION 2.6)
-   project(simple)
-   enable_language(Fortran)
+   cmake_minimum_required(VERSION 3.20)
+   project(simple LANGUAGES Fortran)
 
    add_executable(simple myprog.f90)
 
@@ -637,9 +639,8 @@ becomes:
 
 .. code-block:: CMake
 
-   cmake_minimum_required(VERSION 2.6)
-   project(simple)
-   enable_language(Fortran)
+   cmake_minimum_required(VERSION 3.20)
+   project(simple LANGUAGES Fortran)
 
    add_executable(simple myprog.f90)
    target_link_libraries(simple blas m)
